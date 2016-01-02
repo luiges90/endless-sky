@@ -1,13 +1,3 @@
-# Copyright (c) 2014 by Michael Zahniser
-#
-# Endless Sky is free software: you can redistribute it and/or modify it under the
-# terms of the GNU General Public License as published by the Free Software
-# Foundation, either version 3 of the License, or (at your option) any later version.
-#
-# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
 fleet "Small Southern Merchants"
 	government "Merchant"
 	names "civilian"
@@ -68,6 +58,123 @@ fleet "Small Southern Merchants"
 	variant 7
 		"Hauler"
 		"Berserker"
+	variant 30
+		"Shuttle (Armed)"
+	variant 20
+		"Shuttle (Shield)"
+	variant 10
+		"Shuttle (Fast)"
+	variant 10
+		"Shuttle (Interceptor)"
+	variant 20
+		"Star Barge (Anti-missile)"
+	variant 10
+		"Star Barge (Scram)"
+	variant 10
+		"Star Barge (Interceptor)"
+	variant 2
+		"Heavy Shuttle (Shield)"
+	variant 2
+		"Heavy Shuttle (Fast)"
+	variant 2
+		"Heavy Shuttle (Missile)"
+	variant 10
+		"Clipper (Laser)"
+	variant 10
+		"Clipper (Turn Laser)"
+	variant 5
+		"Clipper (Plasma)"
+	variant 5
+		"Clipper (Javelin)"
+	variant 10
+		"Freighter (Laser)"
+	variant 2
+		"Bounder (Anti-missile)"
+	variant 1
+		"Bounder (Fast)"
+	variant 1
+		"Bounder (Interceptor)"
+	variant 1
+		"Bounder (Fast Interceptor)"
+	variant 10
+		"Shuttle (Fast)" 3
+	variant 5
+		"Star Barge (Armed)" 2
+		"Star Barge (Anti-missile)"
+	variant 5
+		"Shuttle (Interceptor)"
+		"Star Barge (Anti-missile)" 2
+	vaariant 5
+		"Star Barge (Armed)"
+		"Star Barge (Anti-missile)"
+		"Sparrow (Laser)"
+	variant 5
+		"Star Barge (Scram)" 2
+		"Sparrow (Scram)"
+	variant 3
+		"Heavy Shuttle (Fast)" 3
+	variant 3
+		"Star Barge (Interceptor)" 3
+	variant 3
+		"Heavy Shuttle (Fast)"
+		"Star Barge (Scram)" 2
+	variant 3
+		"Star Barge (Anti-missile)" 2
+		"Sparrow"
+	variant 3
+		"Heavy Shuttle (Shield)" 2
+		"Sparrow (Laser)"
+	variant 2
+		"Clipper (Laser)"
+		"Star Barge (Scram)"
+	variant 2
+		"Clipper (Plasma)"
+		"Star Barge (Armed)"
+	variant 2
+		"Clipper (Javelin)"
+		"Star Barge (Anti-missile)"
+	variant 1
+		"Bounder (Anti-missile)"
+		"Sparrow (Missile)"
+	variant 1
+		"Bounder (Fast)"
+		"Star Barge (Scram)" 2
+	variant 1
+		"Bounder (Interceptor)"
+		"Star Barge (Anti-missile)" 2
+	variant 1
+		"Bounder (Fast Interceptor)"
+		"Star Barge (Scram)" 2
+	variant 2
+		"Freighter"
+		"Sparrow"
+	variant 2
+		"Freighter (Laser)"
+		"Sparrow (Laser)"
+	variant 1
+		"Freighter (Laser)"
+		"Fury (Laser)"
+	variant 1
+		"Freighter"
+		"Fury"
+	variant 1
+		"Freighter"
+		"Berserker"
+	variant 1
+		"Freighter (Laser)"
+		"Berserker (Laser)"
+	variant 10
+		"Hauler (Plasma)"
+	variant 10
+		"Hauler (Rocket)"
+	variant 5
+		"Hauler II (Plasma)"
+	variant 5
+		"Hauler II (Rocket)"
+	variant 2
+		"Hauler III (Plasma)"
+	variant 2
+		"Hauler III (Rocket)"
 
 fleet "Large Southern Merchants"
 	government "Merchant"
@@ -153,6 +260,158 @@ fleet "Large Southern Merchants"
 	variant 6
 		"Hauler III"
 		"Berserker" 2
+	variant 15
+		"Argosy (Laser 2)"
+	variant 15
+		"Argosy (Plasma)"
+	variant 15
+		"Argosy (Rocket)"
+	variant 2
+		"Mule (Rocket)"
+		"Dagger"
+	variant 2
+		"Mule (Fast Laser)"
+		"Dagger"
+	variant 2
+		"Mule (Scram)"
+		"Dagger"
+	variant 2
+		"Mule (Plasma)"
+		"Dagger"
+	variant 10
+		"Argosy (Rocket)" 2
+	variant 10
+		"Argosy (Plasma)" 2
+	variant 10
+		"Hauler (Plasma)"
+		"Hauler (Rocket)"
+	variant 10
+		"Hauler II"
+		"Berserker (Laser)" 2
+	variant 10
+		"Hauler II (Plasma)"
+		"Sparrow (Laser)" 3
+	variant 10
+		"Argosy (Laser 2)"
+		"Hawk (Torpedo)"
+	variant 15
+		"Blackbird (Shield)"
+	variant 10
+		"Blackbird (Shield)"
+		"Fury (Laser)"
+	variant 10
+		"Blackbird (Shield)"
+		"Berserker (Laser)"
+	variant 10
+		"Hauler (Rocket)" 2
+	variant 10
+		"Shuttle (Interceptor)" 10
+	variant 10
+		"Star Barge (Scram)" 10
+	variant 10
+		"Heavy Shuttle (Missile)" 10
+	variant 10
+		"Star Barge (Anti-missile)" 6
+		"Sparrow" 2
+		"Sparrow (Laser)" 
+		"Sparrow (Missile)"
+	variant 10
+		"Clipper (Javelin)" 3
+	variant 10
+		"Freighter" 2
+		"Shuttle (Armed)"
+		"Sparrow (Laser)"
+	variant 10
+		"Freighter (Laser)" 2
+		"Fury"
+		"Berserker"
+	variant 10
+		"Freighter" 2
+		"Fury (Missile)" 2
+	variant 10
+		"Freighter (Laser)"
+		"Bounder"
+	variant 10
+		"Bounder (Fast Interceptor)" 3
+	variant 5
+		"Bastion (Plasma)"
+	variant 5
+		"Bastion (Rocket)"
+	variant 5
+		"Bastion (Plasma)"
+		"Argosy (Plasma)" 2
+	variant 5
+		"Bastion"
+		"Freighter"
+		"Hawk (Torpedo)"
+	variant 5
+		"Bastion"
+		"Blackbird (Shield)"
+	variant 5
+		"Blackbird (Shield)" 2
+	variant 5
+		"Argosy (Laser 2)" 4
+	variant 5
+		"Hauler (Rocket)"
+		"Hauler II (Rocket)"
+		"Hauler III (Rocket)"
+	variant 5
+		"Bastion (Plasma)"
+		"Bounder (Anti-missile)"
+		"Freighter"
+		"Hawk" 2
+	variant 5
+		"Bastion"
+		"Berserker (Laser)" 3
+	variant 5
+		"Freighter" 3
+		"Berserker (Javelin)" 3
+	variant 5
+		"Blackbird (Shield)"
+		"Bounder (Fast Interceptor)" 2
+	variant 5
+		"Freighter (Laser)" 3
+		"Berserker (Laser)" 3
+	variant 5
+		"Argosy"
+		"Star Barge (Anti-missile)" 4
+		"Sparrow"
+		"Sparrow (Laser)"
+	variant 5
+		"Argosy (Laser)" 2
+		"Freighter" 2
+		"Fury (Laser)" 2
+	variant 5
+		"Hauler III" 3
+	variant 5
+		"Mule (Fast Laser)" 2
+		"Dagger" 2
+	variant 5
+		"Bounder (Fast Interceptor)" 2
+		"Clipper (Turn Laser)" 2
+	variant 5
+		"Argosy (Laser)"
+		"Argosy (Laser 2)"
+		"Bounder (Anti-missile)"
+		"Freighter"
+		"Hawk"
+	variant 2
+		"Bounder (Fast Interceptor)" 5
+	variant 2
+		"Clipper (Javelin)" 5
+	variant 2
+		"Bastion" 2
+		"Freighter" 4
+	variant 2
+		"Hauler III" 2
+		"Bounder (Anti-missile)"
+	variant 1
+		"Osprey"
+		"Argosy" 4
+	variant 1
+		"Osprey (Missile)"
+		"Argosy (Rocket)" 4
+
 
 fleet "Small Core Merchants"
 	government "Merchant"
@@ -211,6 +470,127 @@ fleet "Small Core Merchants"
 		"Flivver"
 	variant 1
 		"Flivver (Racing)"
+	variant 20
+		"Shuttle (Armed)"
+	variant 10
+		"Shuttle (Fast)"
+	variant 10
+		"Shuttle (Interceptor)"
+	variant 10
+		"Star Barge (Interceptor)"
+	variant 2
+		"Heavy Shuttle (Shield)"
+	variant 2
+		"Heavy Shuttle (Fast)"
+	variant 2
+		"Heavy Shuttle (Missile)"
+	variant 10
+		"Freighter (Laser)"
+	variant 1
+		"Flivver (Shield)"
+	variant 1
+		"Flivver (Laser)"
+	variant 1
+		"Flivver (Scram)"
+	variant 1
+		"Flivver (Javelin)"
+	variant 20
+		"Bounder (Anti-missile)"
+	variant 15
+		"Bounder (Interceptor)"
+	variant 15
+		"Shuttle (Fast)" 3
+	variant 10
+		"Star Barge (Armed)" 2
+		"Star Barge (Anti-missile)"
+	variant 10
+		"Shuttle (Interceptor)"
+		"Star Barge (Anti-missile)" 2
+	vaariant 10
+		"Star Barge (Armed)"
+		"Star Barge (Anti-missile)"
+		"Wasp (Laser)"
+	variant 10
+		"Star Barge (Scram)" 2
+		"Wasp (Scram)"
+	variant 5
+		"Heavy Shuttle (Fast)" 3
+	variant 5
+		"Star Barge (Interceptor)" 3
+	variant 5
+		"Heavy Shuttle (Fast)"
+		"Star Barge (Scram)" 2
+	variant 5
+		"Star Barge (Anti-missile)" 2
+		"Wasp"
+	variant 5
+		"Heavy Shuttle (Shield)" 2
+		"Wasp (Laser)"
+	variant 3
+		"Bounder (Anti-missile)"
+		"Wasp (Missile)"
+	variant 3
+		"Bounder (Interceptor)"
+		"Star Barge (Anti-missile)" 2
+	variant 3
+		"Freighter"
+		"Wasp"
+	variant 3
+		"Freighter (Laser)"
+		"Wasp (Laser)"
+	variant 3
+		"Freighter"
+		"Wasp (Proton)"
+	variant 1
+		"Flivver (Javelin)" 3
+	variant 1
+		"Flivver (Scram)" 3
+	variant 1
+		"Flivver (Racing)" 3
+	variant 1
+		"Flivver (Racing)"
+		"Flivver (Shield)"
+		"Flivver (Scram)"
+		"Flivver (Laser)"
+	variant 2
+		"Argosy (Proton)"
+	variant 2
+		"Argosy (Missile 2)"
+	variant 2
+		"Argosy (Javelin)"
+	variant 2
+		"Argosy (Torpedo)"
+	variant 2
+		"Bounder (Interceptor)" 2
+	variant 2
+		"Freighter (Laser)"
+		"Wasp (Laser)" 2
+	variant 2
+		"Star Barge (Shield)" 2
+		"Star Barge (Interceptor)" 2
+		"Star Barge (Anti-missile)"
+	variant 2
+		"Shuttle (Fast)" 5
+	variant 2
+		"Star Barge (Scram)" 4
+		"Wasp (Scram)" 2
+	variant 2
+		"Star Barge (Anti-missile)" 4
+		"Wasp (Missile)" 2
+	variant 2
+		"Shuttle (Interceptor)" 3
+		"Star Barge (Interceptor)" 3
+	variant 1
+		"Mule (Torpedo)"
+		"Dagger"
+	variant 1
+		"Mule (Proton)"
+		"Dagger"
+	variant 1
+		"Mule (Scram)"
+		"Dagger"
+
+	
 
 fleet "Large Core Merchants"
 	government "Merchant"
@@ -291,6 +671,156 @@ fleet "Large Core Merchants"
 		"Wasp (Proton)" 2
 	variant 2
 		"Arrow"
+	variant 30
+		"Bulk Freighter (Torpedo)"
+		"Wasp (Missile)" 2
+	variant 10
+		"Freighter (Laser)" 3
+		"Wasp (Laser)" 3
+	variant 10
+		"Freighter" 3
+		"Bounder (Interceptor)" 2
+		"Bounder (Anti-missile)"
+	variant 10
+		"Argosy (Javelin)" 
+		"Argosy (Torpedo)"
+		"Argosy (Missile 2)"
+	variant 10
+		"Argosy (Proton)" 3
+	variant 10
+		"Argosy (Blaster)"
+		"Argosy (Proton)"
+		"Argosy (Javelin)"
+	variant 10
+		"Argosy (Proton)" 2
+		"Quicksilver (Ion Proton)"
+	variant 10
+		"Freighter"
+		"Freighter (Laser)"
+		"Bounder (Anti-missile)"
+		"Bounder (Interceptor)"
+		"Wasp" 2
+	variant 10
+		"Freighter" 4
+		"Quicksilver (Torpedo)" 2
+	variant 10
+		"Freighter (Laser)" 4
+		"Splinter"
+	variant 10
+		"Freighter (Laser)" 4
+		"Wasp (Laser)" 4
+	variant 10
+		"Freighter" 4
+		"Wasp (Missile)" 4
+	variant 10
+		"Freighter (Laser)" 4
+		"Bounder (Interceptor)" 2
+	variant 5
+		"Bulk Freighter (Torpedo)"
+		"Splinter (Torpedo)"
+	variant 5
+		"Bulk Freighter (Blaster)"
+		"Quicksilver (Ion Proton)" 2
+	variant 5
+		"Bulk Freighter (Torpedo)"
+		"Quicksilver (Torpedo)" 2
+	variant 5
+		"Bulk Freighter"
+		"Argosy (Javelin)"
+		"Argosy (Torpedo)"
+	variant 5
+		"Bulk Freighter (Blaster)"
+		"Bulk Freighter (Torpedo)"
+	variant 5
+		"Argosy (Proton)" 5
+	variant 5
+		"Bulk Freighter"
+		"Quicksilver (Proton)"
+		"Bounder (Interceptor)" 2
+	variant 5
+		"Bulk Freighter (Torpedo)"
+		"Wasp (Proton)" 4
+	variant 5
+		"Bulk Freighter (Torpedo)"
+		"Wasp (Missile)" 4
+	variant 5
+		"Bulk Freighter"
+		"Wasp"
+		"Wasp (Proton)"
+		"Wasp (Laser)"
+		"Wasp (Missile)"
+	variant 5
+		"Bulk Freighter (Blaster)"
+		"Splinter (Blaster)"
+	variant 5
+		"Bulk Freighter (Blaster)"
+		"Splinter (Heavy Blaster)"
+	variant 5
+		"Bulk Freighter (Torpedo)"
+		"Splinter (Torpedo)"
+	variant 2
+		"Bulk Freighter (Blaster)" 2
+		"Vanguard (Torpedo)"
+	variant 2
+		"Bulk Freighter"
+		"Argosy (Proton)" 4
+	variant 2
+		"Bulk Freighter (Blaster)"
+		"Argosy (Missile 2)" 2
+		"Argosy (Blaster)" 2
+	variant 2
+		"Bulk Freighter (Torpedo)" 2
+		"Protector"
+	variant 2
+		"Bulk Freighter"
+		"Bulk Freighter (Blaster)"
+		"Bounder (Interceptor)" 5
+	variant 2
+		"Bulk Freighter (Torpedo)" 2
+		"Wasp (Laser)" 4
+		"Wasp (Proton)" 2
+		"Wasp (Missile)" 4
+	variant 2
+		"Freighter" 6
+		"Wasp (Proton)" 4
+	variant 2
+		"Freighter" 6
+		"Wasp" 4
+	variant 2
+		"Freighter" 6
+		"Bounder (Anti-missile)" 
+		"Bounder (Interceptor)" 3
+	variant 2
+		"Freighter" 6
+		"Quicksilver (Proton)" 2
+		"Argosy (Missile 2)"
+	variant 2
+		"Freighter" 6
+		"Quicksilver (Ion Proton)" 3
+	variant 2
+		"Freighter" 6
+		"Protector"
+	variant 2
+		"Freighter" 6
+		"Vanguard"
+	variant 2
+		"Freighter (Laser)" 6
+		"Vanguard (Torpedo)"
+	variant 1
+		"Bactrian (Proton)"
+		"Dagger" 3
+	variant 1
+		"Arrow (Laser)"
+	variant 1
+		"Arrow (Scram)"
+	variant 1
+		"Arrow (Scram)" 3
+	variant 1
+		"Flivver (Racing)" 10
+	
+	
+		
+		
 
 fleet "Small Northern Merchants"
 	government "Merchant"
@@ -342,6 +872,152 @@ fleet "Small Northern Merchants"
 	variant 2
 		"Hauler II"
 		"Hauler"
+	variant 30
+		"Shuttle (Armed)"
+	variant 10
+		"Shuttle (Fast)"
+	variant 10
+		"Shuttle (Interceptor)"
+	variant 5
+		"Shuttle (Fastest)"
+	variant 5
+		"Shuttle (Fast Interceptor)"
+	variant 10
+		"Star Barge (Interceptor)"
+	variant 5
+		"Star Barge (Fast)"
+	variant 5
+		"Star Barge (Fast Interceptor)"
+	variant 10
+		"Freighter (Laser)"
+	variant 10
+		"Freighter (Anti-missile)"
+	variant 10
+		"Freighter (Shield)"
+	variant 10
+		"Freighter (Fast)"
+	variant 10
+		"Freighter (Extreme Shield)"
+	variant 1
+		"Flivver (Shield)"
+	variant 1
+		"Flivver (Laser)"
+	variant 1
+		"Flivver (Scram)"
+	variant 1
+		"Bounder (Anti-missile)"
+	variant 1
+		"Bounder (Fastest)"
+	variant 1
+		"Bounder (Max Speed)"
+	variant 1
+		"Bounder (Interceptor)"
+	variant 1
+		"Bounder (Fastest Interceptor)"
+	variant 2
+		"Hauler (Laser)"
+	variant 2
+		"Hauler (Laser - Anti-missile)"
+	variant 2
+		"Hauler (Torpedo)"
+	variant 2
+		"Hauler (Missile)"
+	variant 2
+		"Hauler (Fast Laser)"
+	variant 2
+		"Hauler (Fast Particle)"
+	variant 2
+		"Hauler (Fast Torpedo)"
+	variant 2
+		"Hauler (Shield)"
+	variant 2
+		"Hauler (Extreme Shield)"
+	variant 1
+		"Hauler II (Laser)"
+	variant 1
+		"Hauler II (Laser - Anti-missile)"
+	variant 1
+		"Hauler II (Torpedo)"
+	variant 1
+		"Hauler II (Missile)"
+	variant 1
+		"Hauler II (Fast Laser)"
+	variant 1
+		"Hauler II (Fast Particle)"
+	variant 1
+		"Hauler II (Fast Torpedo)"
+	variant 1
+		"Hauler II (Shield)"
+	variant 1
+		"Hauler II (Extreme Shield)"
+	variant 10
+		"Shuttle (Interceptor)"
+		"Star Barge (Interceptor)"
+		"Star Barge (Anti-missile)"
+	variant 5
+		"Shuttle (Fast Interceptor)"
+		"Star Barge (Fast Interceptor)" 2
+	variant 5
+		"Shuttle (Fastest)" 3
+	variant 10
+		"Shuttle (Fast)"
+		"Star Barge (Scram)" 2
+	variant 10
+		"Star Barge (Shield)" 2
+		"Sparrow (Laser)"
+	variant 5
+		"Star Barge (Fast)" 2
+		"Sparrow (Fast)"
+	variant 5
+		"Freighter (Shield)"
+		"Berserker (Laser)"
+	variant 5
+		"Freighter (Anti-missile)"
+		"Berserker (Missile)"
+	variant 2
+		"Freighter (Fast)"
+		"Berserker (Fast Particle)"
+	variant 2
+		"Freighter (Fast)"
+		"Sparrow (Scram)" 2
+	variant 5
+		"Freighter (Laser)"
+		"Sparrow (Laser)" 2
+	variant 5
+		"Freighter (Anti-missile)"
+		"Sparrow (Missile)" 2
+	variant 5
+		"Bounder (Anti-missile)"
+		"Sparrow (Missile)" 2
+	variant 5
+		"Bounder (Interceptor)"
+		"Sparrow (Laser)" 2
+	variant 5
+		"Bounder (Laser)"
+		"Berserker (Laser)"
+	variant 2
+		"Bounder (Fast Interceptor)"
+		"Berserker (Fast Particle)"
+	variant 1
+		"Mule (Torpedo)"
+		"Dagger"
+	variant 1
+		"Mule (Laser)"
+		"Dagger"
+	variant 1
+		"Mule (Fastest)"
+		"Dagger"
+	variant 1
+		"Mule (Max Speed)"
+		"Dagger"
+	variant 1
+		"Mule (Particle)"
+		"Dagger"
+	variant 1
+		"Mule (Scram)"
+		"Dagger"
+
+
 
 fleet "Large Northern Merchants"
 	government "Merchant"
@@ -494,7 +1170,291 @@ fleet "Large Northern Merchants"
 		"Hauler III"
 		"Hauler II"
 		"Headhunter" 3
-
+	variant 4
+		"Hauler III (Laser)" 2
+	variant 4
+		"Hauler III (Laser - Anti-missile)" 2
+	variant 4
+		"Hauler III (Torpedo)" 2
+	variant 4
+		"Hauler III (Missile)" 2
+	variant 4
+		"Hauler III (Fast Laser)" 2
+	variant 4
+		"Hauler III (Fast Particle)" 2
+	variant 4
+		"Hauler III (Fast Torpedo)" 2
+	variant 4
+		"Hauler III (Shield)" 2
+	variant 4
+		"Hauler III (Extreme Shield)" 2
+	variant 10
+		"Behemoth (Laser)"
+	variant 10
+		"Behemoth (Anti-missile)"
+	variant 10
+		"Behemoth (Shield)"
+	variant 10
+		"Behemoth (Extreme Shield)"
+	variant 1
+		"Bactrian (Laser)"
+		"Dagger" 3
+	variant 1
+		"Bactrian (Particle)"
+		"Dagger" 3
+	variant 1
+		"Bactrian (Torpedo)"
+		"Dagger" 3
+	variant 1
+		"Bactrian (Fast)"
+		"Dagger" 3
+	variant 20
+		"Freighter (Laser)"
+		"Freighter (Anti-missile)"
+		"Berserker (Laser)"
+		"Berserker (Missile)"
+	variant 20
+		"Freighter (Anti-missile)" 2
+		"Berserker (Missile)" 2
+	variant 10
+		"Freighter (Extreme Shield)" 2
+		"Berserker (Laser)" 2
+	variant 20
+		"Freighter (Laser)" 2
+		"Berserker (Laser)" 2
+	variant 20
+		"Freighter (Shield)" 2
+		"Headhunter (Laser)"
+	variant 20
+		"Freighter (Anti-missile)" 2
+		"Headhunter (Missile)"
+	variant 10
+		"Freighter (Fast)" 2
+		"Headhunter (Fast)"
+	variant 10
+		"Freighter (Extreme Shield)" 2
+		"Headhunter (Scram)"
+	variant 10
+		"Freighter (Fast)" 2
+		"Headhunter (Fast Missile)"
+	variant 20
+		"Freighter (Anti-missile)" 3
+		"Sparrow (Laser)" 5
+	variant 20
+		"Freighter (Shield)" 2
+		"Freighter (Anti-missile)"
+		"Sparrow (Missile)" 4
+	variant 10
+		"Freighter (Fast)" 3
+		"Sparrow (Fast)" 5
+	variant 10
+		"Freighter (Extreme Shield)" 3
+		"Berserker (Laser)" 2
+	variant 10
+		"Freighter"
+		"Freighter (Laser)"
+		"Freighter (Anti-missile)"
+		"Berserker (Missile)"
+		"Berserker (Laser)"
+	variant 20
+		"Bounder (Anti-missile)"
+		"Freighter (Anti-missile)" 
+		"Berserker (Laser)" 2
+	variant 20
+		"Bounder (Interceptor)" 2
+		"Freighter (Shield)" 2
+	variant 10
+		"Bounder (Max Speed)" 3
+	variant 10
+		"Bounder (Fastest)" 2
+		"Bounder (Fastest Interceptor)"
+	variant 10
+		"Freighter (Anti-missile)"
+		"Freighter (Shield)"
+		"Bounder (Fastest Interceptor)"
+	variant 20
+		"Bounder (Interceptor)"
+		"Headhunter (Laser)"
+	variant 20
+		"Bounder (Anti-missile)"
+		"Headhunter (Missile)"
+	variant 10
+		"Bounder (Fastest Interceptor)"
+		"Headhunter (Fast)"
+	variant 10
+		"Freighter" 4
+		"Firebird (Particle)"
+	variant 10
+		"Freighter (Laser)" 4
+		"Firebird (Missile 2)"
+	variant 10
+		"Freighter (Shield)" 4
+		"Firebird (Missile)"
+	variant 5
+		"Freighter (Fast)" 4
+		"Firebird (Fast)"
+	variant 10
+		"Freighter (Laser)" 2
+		"Freighter (Anti-missile)" 2
+		"Corvette (Torpedo)"
+	variant 5
+		"Freighter (Fast)" 4
+		"Corvette (Fast)"
+	variant 10
+		"Freighter (Laser)" 3
+		"Freighter (Anti-missile)"
+		"Headhunter (Laser)" 2
+	variant 10
+		"Freighter (Laser)" 4
+		"Headhunter (Particle)" 2
+	variant 5
+		"Freighter (Fast)" 4
+		"Headhunter (Fast)"
+		"Headhunter (Fast Missile)"
+	variant 10
+		"Freighter (Anti-missile)" 2
+		"Bounder (Interceptor)" 2
+		"Berserker (Missile)" 4
+	variant 10
+		"Freighter (Laser)" 2
+		"Bounder (Anti-missile)" 2
+		"Berserker (Laser)" 4
+	variant 5
+		"Freighter (Fast)" 2
+		"Bounder (Max Speed)" 2
+		"Berserker (Fast Particle)" 4
+	variant 10
+		"Freighter (Laser)" 3
+		"Bounder (Anti-missile)"
+		"Headhunter (Scram)" 2
+	variant 10
+		"Freighter (Shield)" 3
+		"Bounder (Interceptor)"
+		"Headhunter (Laser)" 2
+	variant 5
+		"Freighter (Anti-missile)"
+		"Freighter (Shield)" 2
+		"Bounder (Max Speed)"
+		"Headhunter (Fast)"
+		"Headhunter (Fast Missile)"
+	variant 5
+		"Freighter (Extreme Shield)" 2
+		"Bounder (Max Speed)" 2
+		"Headhunter (Fast)" 2
+	variant 5
+		"Freighter (Extreme Shield)" 4
+		"Headhunter (Fast Missile)" 2
+	variant 5
+		"Bounder (Max Speed)" 3
+		"Headhunter (Laser)" 3
+	variant 5
+		"Bounder (Fastest Interceptor)" 3
+		"Headhunter (Missile)" 3
+	variant 5
+		"Behemoth (Laser)"
+		"Firebird" 2
+	variant 5
+		"Behemoth (Anti-missile)"
+		"Firebird (Missile 2)" 2
+	variant 5
+		"Behemoth (Anti-missile)"
+		"Corvette (Missile 2)" 2
+	variant 5
+		"Behemoth (Shield)"
+		"Firebird (Particle)" 2
+	variant 2
+		"Behemoth (Extreme Shield)"
+		"Corvette (Fast)" 2
+	variant 5
+		"Behemoth (Anti-missile)"
+		"Firebird (Torpedo)"
+		"Corvette (Torpedo)"
+	variant 2
+		"Behemoth (Laser)"
+		"Firebird (Fast)" 2
+	variant 5
+		"Behemoth (Laser)"
+		"Leviathan (Laser)"
+	variant 5
+		"Behemoth (Anti-missile)"
+		"Leviathan (Missile)"
+	variant 2
+		"Behemoth (Extreme Shield)"
+		"Leviathan (Fast)"
+	variant 1
+		"Star Queen (Laser)"
+		"Leviathan (Laser)"
+	variant 1
+		"Star Queen (Turret)"
+		"Leviathan (Heavy)"
+	variant 1
+		"Star Queen (Scram)"
+		"Firebird (Fast)" 2
+	variant 1
+		"Star Queen (Fast)"
+		"Corvette (Fast)" 2
+	variant 1
+		"Star Queen (Particle)"
+		"Leviathan (Missile)"
+	variant 2
+		"Behemoth (Extreme Shield)" 2
+		"Leviathan (Missile)"
+	variant 5
+		"Behemoth (Laser)"
+		"Behemoth (Anti-missile)"
+		"Leviathan (Missile)"
+	variant 5
+		"Behemoth (Laser)" 2
+		"Leviathan (Anti-missile)"
+	variant 5
+		"Behemoth (Anti-missile)" 2
+		"Corvette (Missile 2)" 3
+	variant 5
+		"Behemoth (Shield)" 2
+		"Firebird (Particle)" 3
+	variant 2
+		"Behemoth (Extreme Shield)" 2
+		"Corvette (Fast)" 3
+	variant 5
+		"Behemoth (Laser)" 2
+		"Headhunter (Laser)" 5
+	variant 5
+		"Behemoth (Anti-missile)" 2
+		"Headhunter (Missile)" 5
+	variant 2
+		"Behemoth (Speedy)" 2
+		"Headhunter (Fast)" 5
+	variant 5
+		"Behemoth (Laser)"
+		"Behemoth (Anti-missile)"
+		"Bounder (Interceptor)" 2
+		"Bounder (Anti-missile)" 2
+	variant 2
+		"Behemoth (Extreme Shield)" 2
+		"Bounder (Interceptor)" 4
+	variant 2
+		"Behemoth (Speedy)" 2
+		"Bounder (Fastest Interceptor)" 4
+	variant 2
+		"Behemoth (Anti-missile)" 2
+		"Berserker (Missile)" 8
+	variant 2
+		"Behemoth (Laser)" 2
+		"Berserker (Laser)" 8
+	variant 1
+		"Behemoth (Speedy)" 2
+		"Berserker (Fast Particle)" 8
+	variant 1
+		"Bounder (Max Speed)" 10
+	variant 1
+		"Bounder (Fastest Interceptor)" 10
+	variant 1
+		"Freighter (Extreme Shield)" 10
+	variant 1
+		"Behemoth (Shield)" 5
+		
+		
+		
 fleet "Small Free Worlds"
 	government "Free Worlds"
 	names "free worlds small"
@@ -539,6 +1499,51 @@ fleet "Small Free Worlds"
 	variant 2
 		"Hawk (Speedy)"
 		"Sparrow" 2
+	variant 5
+		"Fury (Rocket)" 2
+	variant 5
+		"Berserker (Javelin)" 2
+	variant 5
+		"Berserker (Laser)" 2
+	variant 2
+		"Hawk (Torpedo)"
+		"Berserker (Javelin)"
+	variant 2
+		"Hawk (Scram)"
+		"Fury (Scram)"
+	variant 2
+		"Hawk (Plasma)"
+		"Berserker (Laser)"
+	variant 5
+		"Sparrow (Rocket)" 2
+	variant 5
+		"Sparrow (Laser)" 2
+	variant 5
+		"Sparrow (Missile)" 2
+	variant 5
+		"Sparrow (Scram)" 2
+	variant 2
+		"Fury (Rocket)"
+		"Sparrow (Rocket)" 2
+	variant 2
+		"Fury (Laser)"
+		"Sparrow (Laser)" 2
+	variant 2
+		"Fury (Missile)"
+		"Sparrow (Missile)" 2
+	variant 2
+		"Berserker (Javelin)"
+		"Sparrow (Laser)" 2
+	variant 2
+		"Fury (Scram)"
+		"Sparrow (Scram)" 2
+	variant 2
+		"Hawk (Rocket)"
+		"Sparrow (Laser)" 2
+	variant 2
+		"Hawk (Plasma)"
+		"Sparrow (Missile)" 2
+	
 
 fleet "Large Free Worlds"
 	government "Free Worlds"
@@ -619,6 +1624,74 @@ fleet "Large Free Worlds"
 		"Falcon (Laser)"
 		"Bastion (Laser)"
 		"Hawk (Speedy)"
+	variant 5
+		"Bastion (Plasma)"
+	variant 5
+		"Bastion (Rocket)"
+	variant 1
+		"Falcon (Plasma 2)"
+	variant 1
+		"Falcon (Rocket)"
+	variant 2
+		"Osprey (Missile)"
+		"Berserker (Laser)" 3
+	variant 2
+		"Osprey"
+		"Hawk (Torpedo)" 3
+	variant 2
+		"Bastion (Plasma)"
+		"Hawk (Plasma)" 3
+	variant 2
+		"Bastion (Rocket)"
+		"Fury (Missile)" 2
+		"Fury (Rocket)"
+	variant 2
+		"Osprey (Missile)"
+		"Bastion (Plasma)"
+	variant 2
+		"Falcon (Rocket)"
+		"Bastion (Rocket)"
+	variant 2
+		"Falcon (Plasma 2)"
+		"Bastion (Plasma)"
+	variant 2
+		"Osprey"
+		"Berserker (Javelin)" 3
+	variant 2
+		"Osprey (Missile)"
+		"Hawk"
+		"Berserker (Laser)" 2
+	variant 2
+		"Osprey"
+		"Sparrow (Missile)" 4
+	variant 1
+		"Falcon (Plasma 2)"
+		"Hawk (Plasma)" 3
+	variant 1
+		"Falcon (Rocket)"
+		"Fury (Laser)" 3
+	variant 1
+		"Falcon"
+		"Berserker (Laser)" 3
+	variant 1
+		"Falcon (Plasma)"
+		"Sparrow (Laser)" 5
+	variant 1
+		"Falcon (Rocket)"
+		"Sparrow (Missile)" 5
+	variant 1
+		"Sparrow (Rocket)" 10
+	variant 1
+		"Fury (Rocket)" 10
+	variant 1
+		"Berserker (Javelin)" 10
+	variant 1
+		"Hawk (Torpedo)" 10
+	variant 1
+		"Hawk (Plasma)" 10
+	variant 1
+		"Berserker (Laser)" 10
+		
 
 fleet "Small Militia"
 	government "Militia"
@@ -664,6 +1737,50 @@ fleet "Small Militia"
 	variant 2
 		"Hawk (Speedy)"
 		"Sparrow" 2
+		variant 5
+		"Fury (Rocket)" 2
+	variant 5
+		"Berserker (Javelin)" 2
+	variant 5
+		"Berserker (Laser)" 2
+	variant 2
+		"Hawk (Torpedo)"
+		"Berserker (Javelin)"
+	variant 2
+		"Hawk (Scram)"
+		"Fury (Scram)"
+	variant 2
+		"Hawk (Plasma)"
+		"Berserker (Laser)"
+	variant 5
+		"Sparrow (Rocket)" 2
+	variant 5
+		"Sparrow (Laser)" 2
+	variant 5
+		"Sparrow (Missile)" 2
+	variant 5
+		"Sparrow (Scram)" 2
+	variant 2
+		"Fury (Rocket)"
+		"Sparrow (Rocket)" 2
+	variant 2
+		"Fury (Laser)"
+		"Sparrow (Laser)" 2
+	variant 2
+		"Fury (Missile)"
+		"Sparrow (Missile)" 2
+	variant 2
+		"Berserker (Javelin)"
+		"Sparrow (Laser)" 2
+	variant 2
+		"Fury (Scram)"
+		"Sparrow (Scram)" 2
+	variant 2
+		"Hawk (Rocket)"
+		"Sparrow (Laser)" 2
+	variant 2
+		"Hawk (Plasma)"
+		"Sparrow (Missile)" 2
 
 fleet "Large Militia"
 	government "Militia"
@@ -732,6 +1849,73 @@ fleet "Large Militia"
 		"Falcon (Laser)"
 		"Hawk" 2
 		"Sparrow" 3
+	variant 5
+		"Bastion (Plasma)"
+	variant 5
+		"Bastion (Rocket)"
+	variant 1
+		"Falcon (Plasma 2)"
+	variant 1
+		"Falcon (Rocket)"
+	variant 2
+		"Osprey (Missile)"
+		"Berserker (Laser)" 3
+	variant 2
+		"Osprey"
+		"Hawk (Torpedo)" 3
+	variant 2
+		"Bastion (Plasma)"
+		"Hawk (Plasma)" 3
+	variant 2
+		"Bastion (Rocket)"
+		"Fury (Missile)" 2
+		"Fury (Rocket)"
+	variant 2
+		"Osprey (Missile)"
+		"Bastion (Plasma)"
+	variant 2
+		"Falcon (Rocket)"
+		"Bastion (Rocket)"
+	variant 2
+		"Falcon (Plasma 2)"
+		"Bastion (Plasma)"
+	variant 2
+		"Osprey"
+		"Berserker (Javelin)" 3
+	variant 2
+		"Osprey (Missile)"
+		"Hawk"
+		"Berserker (Laser)" 2
+	variant 2
+		"Osprey"
+		"Sparrow (Missile)" 4
+	variant 1
+		"Falcon (Plasma 2)"
+		"Hawk (Plasma)" 3
+	variant 1
+		"Falcon (Rocket)"
+		"Fury (Laser)" 3
+	variant 1
+		"Falcon"
+		"Berserker (Laser)" 3
+	variant 1
+		"Falcon (Plasma)"
+		"Sparrow (Laser)" 5
+	variant 1
+		"Falcon (Rocket)"
+		"Sparrow (Missile)" 5
+	variant 1
+		"Sparrow (Rocket)" 10
+	variant 1
+		"Fury (Rocket)" 10
+	variant 1
+		"Berserker (Javelin)" 10
+	variant 1
+		"Hawk (Torpedo)" 10
+	variant 1
+		"Hawk (Plasma)" 10
+	variant 1
+		"Berserker (Laser)" 10
 
 fleet "Small Republic"
 	government "Republic"
@@ -752,6 +1936,41 @@ fleet "Small Republic"
 		"Rainmaker" 3
 	variant 6
 		"Gunboat"
+	variant 3
+		"Rainmaker (Shield)" 2
+	variant 3
+		"Rainmaker (Missile)" 2
+	variant 2
+		"Rainmaker (Fast)" 2
+	variant 2
+		"Rainmaker (Fast Laser)" 2
+	variant 2
+		"Gunboat (Particle)" 2
+	variant 2
+		"Gunboat (Torpedo)" 2
+	variant 1
+		"Gunboat (Fast)" 2
+	variant 2
+		"Frigate (Laser)"
+	variant 2
+		"Frigate (Torpedo)"
+	variant 2
+		"Frigate (Turret)"
+	variant 2
+		"Frigate (Particle)"
+	variant 1
+		"Frigate (Fast)"
+	variant 2
+		"Gunboat (Torpedo)"
+		"Rainmaker (Missile)"
+	variant 1
+		"Gunboat (Fast)"
+		"Rainmaker (Fast)"
+	variant 1
+		"Gunboat (Fast)"
+		"Rainmaker (Fast Laser)"
+	
+	
 
 fleet "Large Republic"
 	government "Republic"
@@ -793,6 +2012,65 @@ fleet "Large Republic"
 		"Frigate"
 		"Rainmaker" 2
 		"Gunboat"
+	variant 3
+		"Gunboat (Particle)" 5
+	variant 3
+		"Gunboat (Torpedo)" 5
+	variant 1
+		"Gunboat (Fast)" 5
+	variant 3
+		"Gunboat (Particle)" 3
+		"Gunboat (Torpedo)" 2
+	variant 3
+		"Frigate (Laser)" 2
+		"Frigate (Torpedo)"
+	variant 3
+		"Frigate (Turret)" 2
+		"Frigate (Torpedo)"
+	variant 3
+		"Frigate (Particle)" 3
+	variant 1
+		"Frigate (Fast)" 3
+	variant 2
+		"Cruiser (Particle)"
+		"Combat Drone" 4
+		"Gunboat (Particle)"
+		"Frigate (Particle)"
+	variant 2
+		"Cruiser (Torpedo)"
+		"Combat Drone" 4
+		"Frigate (Torpedo)"
+		"Gunboat (Torpedo)"
+	variant 1
+		"Cruiser (Fast)"
+		"Combat Drone" 4
+		"Frigate (Fast)"
+		"Gunboat (Fast)"
+	variant 1
+		"Carrier (Particle)"
+		"Lance" 4
+		"Combat Drone" 6
+		"Frigate (Particle)" 2
+	variant 1
+		"Carrier (Torpedo)"
+		"Lance" 4
+		"Combat Drone" 6
+		"Frigate (Torpedo)" 2
+	variant 1
+		"Carrier (Fast)"
+		"Lance" 4
+		"Combat Drone" 6
+		"Frigate (Fast)" 2
+	variant 1
+		"Rainmaker (Shield)" 8
+	variant 1
+		"Rainmaker (Missile)" 8
+	variant 1
+		"Rainmaker (Fast)" 8
+	variant 1
+		"Rainmaker (Fast Laser)" 8
+
+	
 
 fleet "Navy Surveillance"
 	government "Republic"
@@ -850,6 +2128,64 @@ fleet "Small Deep"
 		"Flivver"
 	variant 2
 		"Flivver (Racing)"
+	variant 2
+		"Headhunter (Laser)"
+	variant 2
+		"Headhunter (Scram)"
+	variant 2
+		"Headhunter (Missile)"
+	variant 2
+		"Headhunter (Fast)"
+	variant 2
+		"Headhunter (Fast Missile)"
+	variant 1
+		"Raven (Shield)"
+	variant 1
+		"Raven (Particle)"
+	variant 1
+		"Raven (Missile)"
+	variant 1
+		"Raven (Fast)"
+	variant 2
+		"Aerie (Missile)"
+		"Dagger" 2
+	variant 2
+		"Aerie (Torpedo)"
+		"Dagger" 2
+	variant 2
+		"Aerie (Particle)"
+		"Dagger" 2
+	variant 2
+		"Aerie (Fast)"
+		"Dagger" 2
+	variant 2
+		"Corvette (Missile 2)"
+	variant 2
+		"Corvette (Torpedo)"
+	variant 2
+		"Corvette (Fast)"
+	variant 2
+		"Mule (Torpedo)"
+		"Dagger"
+	variant 2
+		"Mule (Laser)"
+		"Dagger"
+	variant 2
+		"Mule (Fastest)"
+		"Dagger"
+	variant 1
+		"Mule (Max Speed)"
+		"Dagger"
+	variant 2
+		"Mule (Particle)"
+		"Dagger"
+	variant 2
+		"Mule (Scram)"
+		"Dagger"
+
+
+		
+		
 
 fleet "Large Deep"
 	government "Republic"
@@ -944,6 +2280,94 @@ fleet "Large Deep"
 	variant 1
 		"Star Queen"
 		"Raven (Afterburner)" 2
+	variant 1
+		"Bactrian (Laser)"
+		"Dagger" 3
+	variant 1
+		"Bactrian (Particle)"
+		"Dagger" 3
+	variant 1
+		"Bactrian (Torpedo)"
+		"Dagger" 3
+	variant 1
+		"Bactrian (Fast)"
+		"Dagger" 3
+	variant 1
+		"Mule (Fastest)" 3
+		"Dagger" 3
+	variant 1
+		"Mule (Max Speed)" 3
+		"Dagger" 3
+	variant 2
+		"Aerie (Missile)"
+		"Aerie (Torpedo)"
+		"Dagger" 4
+	variant 2
+		"Aerie (Particle)" 2
+		"Dagger" 4
+	variant 1
+		"Aerie (Fast)" 2
+		"Dagger" 4
+	variant 2
+		"Corvette (Missile 2)"
+		"Aerie (Missile)"
+		"Dagger" 2
+	variant 2
+		"Corvette (Torpedo)" 2
+	variant 1
+		"Corvette (Fast)" 2
+	variant 2
+		"Raven (Afterburner)"
+		"Raven (Shield)" 2
+		"Raven (Particle)" 2
+	variant 2
+		"Raven (Fast)" 5
+	variant 2
+		"Raven (Missile)" 5
+	variant 2
+		"Bactrian (Laser)"
+		"Dagger" 3
+		"Mule (Laser)" 2
+		"Dagger" 2
+	variant 2
+		"Bactrian (Particle)"
+		"Dagger" 3
+		"Mule (Particle)" 2
+		"Dagger" 2
+	variant 2
+		"Bactrian (Torpedo)"
+		"Dagger" 3
+		"Mule (Torpedo)" 2
+		"Dagger" 2
+	variant 1
+		"Bactrian (Fast)"
+		"Dagger" 3
+		"Mule (Fastest)" 2
+		"Dagger" 2
+	variant 2
+		"Bactrian (Torpedo)"
+		"Dagger" 3
+		"Corvette (Fast)" 2
+	variant 2
+		"Bactrian (Particle)"
+		"Dagger" 3
+		"Aerie (Missile)" 2
+		"Dagger" 4
+	variant 2
+		"Bactrian (Torpedo)"
+		"Dagger" 3
+		"Aerie (Torpedo)" 2
+		"Dagger" 4
+	variant 1
+		"Bactrian (Fast)"
+		"Dagger" 3
+		"Aerie (Fast)" 2
+		"Dagger" 4
+	variant 1
+		"Headhunter (Fast Missile)" 8
+	variant 1
+		"Headhunter (Fast)" 8
+		
 
 fleet "Small Oathkeeper"
 	government "Navy (Oathkeeper)"
@@ -964,6 +2388,40 @@ fleet "Small Oathkeeper"
 		"Rainmaker" 3
 	variant 6
 		"Gunboat"
+		variant 3
+		"Rainmaker (Shield)" 2
+	variant 3
+		"Rainmaker (Missile)" 2
+	variant 2
+		"Rainmaker (Fast)" 2
+	variant 2
+		"Rainmaker (Fast Laser)" 2
+	variant 2
+		"Gunboat (Particle)" 2
+	variant 2
+		"Gunboat (Torpedo)" 2
+	variant 1
+		"Gunboat (Fast)" 2
+	variant 2
+		"Frigate (Laser)"
+	variant 2
+		"Frigate (Torpedo)"
+	variant 2
+		"Frigate (Turret)"
+	variant 2
+		"Frigate (Particle)"
+	variant 1
+		"Frigate (Fast)"
+	variant 2
+		"Gunboat (Torpedo)"
+		"Rainmaker (Missile)"
+	variant 1
+		"Gunboat (Fast)"
+		"Rainmaker (Fast)"
+	variant 1
+		"Gunboat (Fast)"
+		"Rainmaker (Fast Laser)"
+		
 
 fleet "Large Oathkeeper"
 	government "Navy (Oathkeeper)"
@@ -1005,6 +2463,63 @@ fleet "Large Oathkeeper"
 		"Frigate"
 		"Rainmaker" 2
 		"Gunboat"
+	variant 3
+		"Gunboat (Particle)" 5
+	variant 3
+		"Gunboat (Torpedo)" 5
+	variant 1
+		"Gunboat (Fast)" 5
+	variant 3
+		"Gunboat (Particle)" 3
+		"Gunboat (Torpedo)" 2
+	variant 3
+		"Frigate (Laser)" 2
+		"Frigate (Torpedo)"
+	variant 3
+		"Frigate (Turret)" 2
+		"Frigate (Torpedo)"
+	variant 3
+		"Frigate (Particle)" 3
+	variant 1
+		"Frigate (Fast)" 3
+	variant 2
+		"Cruiser (Particle)"
+		"Combat Drone" 4
+		"Gunboat (Particle)"
+		"Frigate (Particle)"
+	variant 2
+		"Cruiser (Torpedo)"
+		"Combat Drone" 4
+		"Frigate (Torpedo)"
+		"Gunboat (Torpedo)"
+	variant 1
+		"Cruiser (Fast)"
+		"Combat Drone" 4
+		"Frigate (Fast)"
+		"Gunboat (Fast)"
+	variant 1
+		"Carrier (Particle)"
+		"Lance" 4
+		"Combat Drone" 6
+		"Frigate (Particle)" 2
+	variant 1
+		"Carrier (Torpedo)"
+		"Lance" 4
+		"Combat Drone" 6
+		"Frigate (Torpedo)" 2
+	variant 1
+		"Carrier (Fast)"
+		"Lance" 4
+		"Combat Drone" 6
+		"Frigate (Fast)" 2
+	variant 1
+		"Rainmaker (Shield)" 8
+	variant 1
+		"Rainmaker (Missile)" 8
+	variant 1
+		"Rainmaker (Fast)" 8
+	variant 1
+		"Rainmaker (Fast Laser)" 8
 
 fleet "Small Syndicate"
 	government "Syndicate"
@@ -1026,6 +2541,25 @@ fleet "Small Syndicate"
 		"Manta"
 	variant 1
 		"Manta (Proton)"
+	variant 1
+		"Quicksilver (Torpedo)" 3
+	variant 3
+		"Quicksilver (Ion Proton)" 3
+	variant 1
+		"Manta (Laser)"
+	variant 1
+		"Manta (Torpedo)"
+	variant 1
+		"Manta (Missile)"
+	variant 1
+		"Splinter (Torpedo)"
+	variant 1
+		"Splinter (Blaster)"
+	variant 1
+		"Splinter (Heavy Blaster)"
+
+
+	
 
 fleet "Large Syndicate"
 	government "Syndicate"
@@ -1082,6 +2616,61 @@ fleet "Large Syndicate"
 	variant 1
 		"Vanguard"
 		"Quicksilver (Proton)" 2
+	variant 1
+		"Vanguard (Torpedo)"
+	variant 2
+		"Quicksilver (Torpedo)" 5
+	variant 2
+		"Quicksilver (Ion Proton)" 5
+	variant 2
+		"Manta (Missile)" 2
+	variant 2
+		"Manta (Laser)"
+		"Quicksilver" 2
+	variant 2
+		"Manta (Proton)"
+		"Quicksilver (Ion Proton)" 2
+	variant 2
+		"Splinter (Heavy Blaster)" 2
+	variant 2
+		"Splinter (Blaster)"
+		"Manta (Missile)"
+	variant 2
+		"Manta (Torpedo)"
+		"Splinter (Torpedo)"
+	variant 2
+		"Manta (Missile)"
+		"Quicksilver (Ion Proton)" 2
+	variant 2
+		"Splinter (Heavy Blaster)"
+		"Quicksilver (Torpedo)" 2
+	variant 2
+		"Splinter (Heavy Blaster)"
+		"Quicksilver (Ion Proton)" 2
+	variant 1
+		"Protector"
+		"Manta (Missile)"
+	variant 1
+		"Protector"
+		"Splinter (Heavy Blaster)"
+	variant 1
+		"Protector"
+		"Manta (Torpedo)"
+	variant 1
+		"Vanguard"
+		"Splinter (Heavy Blaster)"
+	variant 1
+		"Vanguard (Torpedo)"
+		"Splinter (Torpedo)"
+	variant 1
+		"Vanguard"
+		"Manta (Laser)"
+	variant 1
+		"Splinter (Torpedo)"
+		"Splinter (Blaster)"
+		"Splinter (Heavy Blaster)"
+
+		
 
 fleet "Small Southern Pirates"
 	government "Pirate"
@@ -1140,6 +2729,62 @@ fleet "Small Southern Pirates"
 		"Clipper (Speedy)"
 	variant 1
 		"Modified Argosy"
+	variant 4
+		"Sparrow (Laser)"
+	variant 4
+		"Sparrow (Missile)"
+	variant 4
+		"Sparrow (Rocket)"
+	variant 4
+		"Sparrow (Pirate)"
+	variant 2
+		"Hawk (Torpedo)"
+	variant 2
+		"Hawk (Plasma)"
+	variant 1
+		"Clipper (Laser)"
+	variant 1
+		"Clipper (Turn Laser)"
+	variant 1
+		"Clipper (Plasma)"
+	variant 1
+		"Clipper (Pirate)"
+	variant 1
+		"Clipper (Javelin)"
+	variant 1
+		"Sparrow (Pirate)" 3
+	variant 1
+		"Sparrow (Rocket)" 3
+	variant 1
+		"Sparrow (Laser)" 3
+	variant 1
+		"Fury (Pirate)" 2
+	variant 1
+		"Fury (Rocket)" 2
+	variant 1
+		"Hawk (Plasma)"
+		"Fury (Pirate)"
+	variant 1
+		"Hawk (Torpedo)"
+		"Sparrow (Pirate)" 2
+	variant 1
+		"Hawk (Rocket)"
+		"Fury (Rocket)"
+		"Sparrow (Rocket)"
+	variant 1
+		"Fury (Pirate)" 2
+		"Sparrow (Pirate)"
+	variant 1
+		"Hawk (Scram)"
+		"Fury (Scram)"
+		"Sparrow (Scram)"
+	variant 1
+		"Hawk"
+		"Fury (Laser)"
+		"Sparrow (Laser)"
+
+
+		
 
 fleet "Large Southern Pirates"
 	government "Pirate"
@@ -1220,6 +2865,119 @@ fleet "Large Southern Pirates"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
+	variant 2
+		"Argosy (Laser 2)"
+	variant 2
+		"Argosy (Plasma)"
+	variant 2
+		"Argosy (Rocket)"
+	variant 1
+		"Modified Argosy (Pirate)"
+	variant 1
+		"Modified Argosy (Torpedo)"
+	variant 1
+		"Modified Argosy (Rocket)"
+	variant 1
+		"Modified Argosy (Missile 2)"
+	variant 1
+		"Modified Argosy (Javelin)"
+	variant 2
+		"Bastion (Plasma)"
+	variant 2
+		"Bastion (Rocket)"
+	variant 2
+		"Bastion (Pirate)"
+	variant 1
+		"Falcon (Plasma 2)"
+	variant 1
+		"Falcon (Rocket)"
+	variant 1
+		"Falcon (Pirate)"
+	variant 2
+		"Sparrow (Pirate)" 5
+	variant 2
+		"Fury (Pirate)" 5
+	variant 2
+		"Berserker (Pirate)" 5
+	variant 1
+		"Sparrow (Laser)"
+		"Sparrow (Missile)"
+		"Sparrow (Rocket)"
+		"Sparrow (Scram)"
+		"Sparrow (Pirate)"
+	variant 1
+		"Fury (Missile)"
+		"Fury (Laser)"
+		"Fury (Pirate)"
+		"Fury (Scram)"
+		"Fury (Rocket)"
+	variant 1
+		"Berserker"
+		"Berserker (Afterburner)"
+		"Berserker (Javelin)"
+		"Berserker (Laser)"
+		"Berserker (Pirate)"
+	variant 1
+		"Clipper (Pirate)"
+		"Hawk (Plasma)"
+	variant 1
+		"Clipper (Javelin)"
+		"Berserker (Javelin)"
+	variant 1
+		"Clipper (Plasma)"
+		"Sparrow (Laser)" 2
+	variant 1
+		"Clipper (Turn Laser)"
+		"Sparrow (Pirate)" 2
+	variant 1
+		"Argosy (Rocket)"
+		"Berserker (Pirate)"
+	variant 1
+		"Argosy (Plasma)"
+		"Fury (Pirate)"
+	variant 1
+		"Argosy (Laser 2)"
+		"Hawk"
+	variant 1
+		"Modified Argosy (Pirate)"
+		"Sparrow (Pirate)" 2
+	variant 1
+		"Modified Argosy (Pirate)"
+		"Berserker (Pirate)"
+	variant 1
+		"Modified Argosy (Pirate)"
+		"Fury (Pirate)"
+	variant 1
+		"Modified Argosy (Torpedo)"
+		"Berserker (Laser)"
+	variant 1
+		"Modified Argosy (Rocket)"
+		"Berserker (Pirate)"
+	variant 1
+		"Modified Argosy (Missile 2)"
+		"Fury (Missile)"
+	variant 1
+		"Modified Argosy (Javelin)"
+		"Berserker (Javelin)"
+	variant 1
+		"Argosy (Laser 2)"
+		"Argosy (Plasma)"
+	variant 1
+		"Argosy (Plasma)"
+		"Argosy (Rocket)"
+	variant 1
+		"Argosy (Laser 2)"
+		"Argosy (Rocket)"
+	variant 1
+		"Modified Argosy (Pirate)" 2
+	variant 1
+		"Modified Argosy (Missile 2)"
+		"Modified Argosy (Javelin)"
+	variant 1
+		"Modified Argosy (Torpedo)"
+		"Modified Argosy (Rocket)"
+
+
 
 fleet "Small Independent"
 	government "Independent"
@@ -1276,6 +3034,59 @@ fleet "Small Independent"
 		"Clipper (Heavy)"
 	variant 1
 		"Clipper (Speedy)"
+	variant 4
+		"Sparrow (Laser)"
+	variant 4
+		"Sparrow (Missile)"
+	variant 4
+		"Sparrow (Rocket)"
+	variant 4
+		"Sparrow (Pirate)"
+	variant 2
+		"Hawk (Torpedo)"
+	variant 2
+		"Hawk (Plasma)"
+	variant 1
+		"Clipper (Laser)"
+	variant 1
+		"Clipper (Turn Laser)"
+	variant 1
+		"Clipper (Plasma)"
+	variant 1
+		"Clipper (Pirate)"
+	variant 1
+		"Clipper (Javelin)"
+	variant 1
+		"Sparrow (Pirate)" 3
+	variant 1
+		"Sparrow (Rocket)" 3
+	variant 1
+		"Sparrow (Laser)" 3
+	variant 1
+		"Fury (Pirate)" 2
+	variant 1
+		"Fury (Rocket)" 2
+	variant 1
+		"Hawk (Plasma)"
+		"Fury (Pirate)"
+	variant 1
+		"Hawk (Torpedo)"
+		"Sparrow (Pirate)" 2
+	variant 1
+		"Hawk (Rocket)"
+		"Fury (Rocket)"
+		"Sparrow (Rocket)"
+	variant 1
+		"Fury (Pirate)" 2
+		"Sparrow (Pirate)"
+	variant 1
+		"Hawk (Scram)"
+		"Fury (Scram)"
+		"Sparrow (Scram)"
+	variant 1
+		"Hawk"
+		"Fury (Laser)"
+		"Sparrow (Laser)"
 
 fleet "Large Independent"
 	government "Independent"
@@ -1337,6 +3148,165 @@ fleet "Large Independent"
 		"Falcon (Heavy)"
 	variant 1
 		"Falcon (Laser)"
+	variant 2
+		"Argosy (Laser 2)"
+	variant 2
+		"Argosy (Plasma)"
+	variant 2
+		"Argosy (Rocket)"
+	variant 1
+		"Modified Argosy (Pirate)"
+	variant 1
+		"Modified Argosy (Torpedo)"
+	variant 1
+		"Modified Argosy (Rocket)"
+	variant 1
+		"Modified Argosy (Missile 2)"
+	variant 1
+		"Modified Argosy (Javelin)"
+	variant 2
+		"Bastion (Plasma)"
+	variant 2
+		"Bastion (Rocket)"
+	variant 2
+		"Bastion (Pirate)"
+	variant 1
+		"Falcon (Plasma 2)"
+	variant 1
+		"Falcon (Rocket)"
+	variant 1
+		"Falcon (Pirate)"
+	variant 2
+		"Sparrow (Pirate)" 5
+	variant 2
+		"Fury (Pirate)" 5
+	variant 2
+		"Berserker (Pirate)" 5
+	variant 1
+		"Sparrow (Laser)"
+		"Sparrow (Missile)"
+		"Sparrow (Rocket)"
+		"Sparrow (Scram)"
+		"Sparrow (Pirate)"
+	variant 1
+		"Fury (Missile)"
+		"Fury (Laser)"
+		"Fury (Pirate)"
+		"Fury (Scram)"
+		"Fury (Rocket)"
+	variant 1
+		"Berserker"
+		"Berserker (Afterburner)"
+		"Berserker (Javelin)"
+		"Berserker (Laser)"
+		"Berserker (Pirate)"
+	variant 1
+		"Clipper (Pirate)"
+		"Hawk (Plasma)"
+	variant 1
+		"Clipper (Javelin)"
+		"Berserker (Javelin)"
+	variant 1
+		"Clipper (Plasma)"
+		"Sparrow (Laser)" 2
+	variant 1
+		"Clipper (Turn Laser)"
+		"Sparrow (Pirate)" 2
+	variant 1
+		"Argosy (Rocket)"
+		"Berserker (Pirate)"
+	variant 1
+		"Argosy (Plasma)"
+		"Fury (Pirate)"
+	variant 1
+		"Argosy (Laser 2)"
+		"Hawk"
+	variant 1
+		"Modified Argosy (Pirate)"
+		"Sparrow (Pirate)" 2
+	variant 1
+		"Modified Argosy (Pirate)"
+		"Berserker (Pirate)"
+	variant 1
+		"Modified Argosy (Pirate)"
+		"Fury (Pirate)"
+	variant 1
+		"Modified Argosy (Torpedo)"
+		"Berserker (Laser)"
+	variant 1
+		"Modified Argosy (Rocket)"
+		"Berserker (Pirate)"
+	variant 1
+		"Modified Argosy (Missile 2)"
+		"Fury (Missile)"
+	variant 1
+		"Modified Argosy (Javelin)"
+		"Berserker (Javelin)"
+	variant 1
+		"Argosy (Laser 2)"
+		"Argosy (Plasma)"
+	variant 1
+		"Argosy (Plasma)"
+		"Argosy (Rocket)"
+	variant 1
+		"Argosy (Laser 2)"
+		"Argosy (Rocket)"
+	variant 1
+		"Modified Argosy (Pirate)" 2
+	variant 1
+		"Modified Argosy (Missile 2)"
+		"Modified Argosy (Javelin)"
+	variant 1
+		"Modified Argosy (Torpedo)"
+		"Modified Argosy (Rocket)"
+	variant 1
+		"Clipper (Pirate)" 2
+	variant 1
+		"Clipper (Plasma)"
+		"Sparrow (Laser)" 2
+	variant 1
+		"Clipper (Laser)"
+		"Fury (Pirate)"
+		"Berserker (Pirate)"
+	variant 1
+		"Clipper (Javelin)" 2
+	variant 1
+		"Argosy (Plasma)"
+		"Clipper (Plasma)"
+	variant 1
+		"Argosy (Laser 2)"
+		"Clipper (Turn Laser)"
+	variant 1
+		"Argosy (Rocket)"
+		"Fury (Rocket)" 2
+	variant 1
+		"Modified Argosy (Pirate)"
+		"Berserker (Pirate)"
+		"Fury (Pirate)"
+	variant 1
+		"Modified Argosy (Javelin)"
+		"Berserker (Laser)" 2
+	variant 1
+		"Modified Argosy (Torpedo)"
+		"Berserker (Pirate)" 2
+	variant 1
+		"Modified Argosy (Missile 2)"
+		"Hawk (Plasma)" 2
+	variant 1
+		"Modified Argosy (Rocket)"
+		"Hawk (Rocket)"
+		"Fury (Rocket)"
+	variant 1
+		"Clipper (Laser)"
+		"Clipper (Turn Laser)"
+		"Clipper (Plasma)"
+	variant 1
+		"Clipper (Heavy)" 2
+		"Clipper (Javelin)"
+	variant 1
+		"Clipper (Pirate)" 3
+
+
 
 fleet "Small Core Pirates"
 	government "Pirate"
@@ -1366,6 +3336,24 @@ fleet "Small Core Pirates"
 		"Headhunter (Particle)"
 	variant 2
 		"Quicksilver" 2
+	variant 4
+		"Sparrow (Missile)"
+	variant 4
+		"Sparrow (Scram)"
+	variant 4
+		"Sparrow (Pirate)"
+	variant 1
+		"Quicksilver (Torpedo)"
+	variant 1
+		"Quicksilver (Ion Proton)"
+	variant 1
+		"Sparrow (Pirate)" 3
+	variant 1
+		"Sparrow (Missile)"
+		"Sparrow (Scram)"
+		"Sparrow (Pirate)"
+
+		
 
 fleet "Large Core Pirates"
 	government "Pirate"
@@ -1403,6 +3391,65 @@ fleet "Large Core Pirates"
 		"Firebird (Plasma)"
 	variant 1
 		"Firebird (Missile)"
+	variant 2
+		"Quicksilver (Torpedo)" 3
+	variant 2
+		"Quicksilver (Ion Proton)" 3
+	variant 2
+		"Manta (Laser)"
+	variant 2
+		"Manta (Torpedo)"
+	variant 2
+		"Manta (Missile)"
+	variant 2
+		"Manta (Pirate)"
+	variant 2
+		"Splinter (Torpedo)"
+	variant 2
+		"Splinter (Blaster)"
+	variant 2
+		"Splinter (Heavy Blaster)"
+	variant 2
+		"Splinter (Pirate)"
+	variant 1
+		"Manta (Laser)" 2
+	variant 1
+		"Manta (Torpedo)"
+		"Manta (Missile)"
+	variant 1
+		"Manta (Pirate)" 2
+	variant 1
+		"Splinter (Torpedo)"
+		"Splinter (Heavy Blaster)"
+	variant 1
+		"Splinter (Pirate)" 2
+	variant 1
+		"Quicksilver"
+		"Quicksilver (Torpedo)"
+		"Quicksilver (Ion Proton)"
+	variant 1
+		"Manta (Pirate)"
+		"Quicksilver (Proton)" 2
+	variant 1
+		"Splinter (Pirate)"
+		"Manta (Pirate)"
+	variant 1
+		"Splinter (Torpedo)"
+		"Manta (Laser)"
+	variant 1
+		"Manta (Torpedo)"
+		"Quicksilver (Ion Proton)" 2
+	variant 1
+		"Manta (Pirate)"
+		"Quicksilver" 2
+	variant 1
+		"Manta (Proton)"
+		"Quicksilver (Proton)"
+		"Quicksilver (Ion Proton)"
+
+
+		
+		
 
 fleet "Small Northern Pirates"
 	government "Pirate"
@@ -1442,6 +3489,41 @@ fleet "Small Northern Pirates"
 		"Corvette (Missile)"
 	variant 1
 		"Corvette (Speedy)"
+	variant 3
+		"Sparrow (Laser)"
+	variant 3
+		"Sparrow (Missile)"
+	variant 3
+		"Sparrow (Fast)"
+	variant 3
+		"Sparrow (Scram)"
+	variant 3
+		"Sparrow (Pirate)"
+	variant 1
+		"Berserker (Missile)"
+	variant 1
+		"Berserker (Laser)"
+	variant 1
+		"Berserker (Pirate)"
+	variant 1
+		"Berserker (Scram)"
+	variant 1
+		"Headhunter (Laser)"
+	variant 1
+		"Headhunter (Scram)"
+	variant 1
+		"Headhunter (Missile)"
+	variant 1
+		"Headhunter (Pirate)"
+	variant 1
+		"Corvette (Missile 2)"
+	variant 1
+		"Corvette (Torpedo)"
+	variant 1
+		"Corvette (Pirate)"
+
+		
+		
 
 fleet "Large Northern Pirates"
 	government "Pirate"
@@ -1516,6 +3598,134 @@ fleet "Large Northern Pirates"
 		"Berserker" 2
 	variant 2
 		"Berserker (Afterburner)" 2
+	variant 2
+		"Firebird (Missile 2)"
+	variant 2
+		"Firebird (Torpedo)"
+	variant 2
+		"Firebird (Particle)"
+	variant 2
+		"Firebird (Pirate)"
+	variant 1
+		"Leviathan (Anti-missile)"
+	variant 1
+		"Leviathan (Torpedo)"
+	variant 1
+		"Leviathan (Missile)"
+	variant 1
+		"Leviathan (Pirate)"
+	variant 1
+		"Sparrow (Pirate)" 8
+	variant 1
+		"Sparrow (Laser)" 2
+		"Sparrow (Missile)" 2
+		"Sparrow (Scram)" 2
+		"Sparrow (Pirate)" 2
+	variant 1
+		"Sparrow (Missile)" 8
+	variant 1
+		"Berserker (Pirate)" 4
+	variant 1
+		"Berserker (Missile)"
+		"Berserker (Laser)"
+		"Berserker (Pirate)"
+		"Berserker (Scram)"
+	variant 1
+		"Berserker (Missile)" 4
+	variant 1
+		"Headhunter (Pirate)" 3
+	variant 1
+		"Headhunter (Laser)"
+		"Headhunter (Scram)"
+		"Headhunter (Missile)"
+	variant 1
+		"Headhunter (Missile)" 3
+	variant 1
+		"Headhunter (Laser)" 3
+	variant 1
+		"Firebird (Particle)" 2
+	variant 1
+		"Firebird (Pirate)" 2
+	variant 1
+		"Firebird (Missile 2)"
+		"Headhunter (Laser)"
+	variant 1
+		"Firebird (Torpedo)"
+		"Headhunter (Pirate)"
+	variant 1
+		"Firebird (Particle)"
+		"Berserker (Laser)" 2
+	variant 1
+		"Firebird (Pirate)"
+		"Sparrow (Pirate)" 3
+	variant 1
+		"Corvette (Pirate)"
+		"Firebird (Pirate)"
+	variant 1
+		"Corvette (Missile 2)"
+		"Firebird (Particle)"
+	variant 1
+		"Corvette (Torpedo)"
+		"Sparrow (Laser)" 3
+	variant 1
+		"Corvette (Pirate)"
+		"Berserker (Pirate)" 2
+	variant 1
+		"Firebird (Missile 2)"
+		"Berserker (Missile)" 2
+	variant 1
+		"Corvette (Missile 2)"
+		"Sparrow (Missile)" 3
+	variant 1
+		"Firebird (Pirate)"
+		"Headhunter (Pirate)"
+	variant 1
+		"Corvette (Torpedo)"
+		"Headhunter (Laser)"
+	variant 1
+		"Leviathan (Pirate)"
+		"Corvette (Pirate)"
+	variant 1
+		"Leviathan (Pirate)"
+		"Firebird (Pirate)"
+	variant 1
+		"Leviathan (Missile)"
+		"Corvette (Missile 2)"
+	variant 1
+		"Leviathan (Anti-missile)"
+		"Firebird (Missile 2)"
+	variant 1
+		"Leviathan (Torpedo)"
+		"Firebird (Torpedo)"
+	variant 1
+		"Leviathan (Laser)"
+		"Headhunter (Laser)" 2
+	variant 1
+		"Leviathan (Pirate)"
+		"Headhunter (Pirate)"
+	variant 1
+		"Leviathan (Missile)"
+		"Berserker (Missile)" 3
+	variant 1
+		"Leviathan (Anti-missile)"
+		"Sparrow (Missile)" 4
+	variant 1
+		"Leviathan (Pirate)"
+		"Headhunter (Pirate)"
+		"Berserker (Pirate)"
+	variant 1
+		"Leviathan (Pirate)"
+		"Sparrow (Pirate)" 4
+	variant 1
+		"Leviathan (Torpedo)"
+		"Berserker (Pirate)" 3
+
+		
+		
+
+
+		
+		
 
 fleet "pirate raid"
 	government "Pirate"
