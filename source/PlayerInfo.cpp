@@ -12,6 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "PlayerInfo.h"
 
+#include "Audio.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
@@ -122,6 +123,8 @@ void PlayerInfo::Load(const string &path)
 			accounts.Load(child);
 		else if(child.Token(0) == "visited" && child.Size() >= 2)
 			Visit(GameData::Systems().Get(child.Token(1)));
+		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
+			Visit(GameData::Planets().Get(child.Token(1)));
 		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
 			destroyedPersons.push_back(GameData::Persons().Get(child.Token(1)));
 		else if(child.Token(0) == "cargo")
@@ -174,8 +177,6 @@ void PlayerInfo::Load(const string &path)
 			ships.back()->Load(child);
 			ships.back()->SetIsSpecial();
 			ships.back()->SetGovernment(GameData::PlayerGovernment());
-			if(ships.size() > 1)
-				ships.back()->SetParent(ships.front());
 			ships.back()->FinishLoading();
 			ships.back()->SetIsYours();
 		}
@@ -514,8 +515,9 @@ int64_t PlayerInfo::Salaries() const
 {
 	// Don't count extra crew on anything but the flagship.
 	int64_t crew = 0;
-	if(!ships.empty())
-		crew = ships.front()->Crew() - ships.front()->RequiredCrew();
+	const Ship *flagship = Flagship();
+	if(flagship)
+		crew = flagship->Crew() - flagship->RequiredCrew();
 	
 	// A ship that is "parked" remains on a planet and requires no salaries.
 	for(const shared_ptr<Ship> &ship : ships)
@@ -534,11 +536,7 @@ int64_t PlayerInfo::Salaries() const
 // ship in the list.
 const Ship *PlayerInfo::Flagship() const
 {
-	for(const shared_ptr<Ship> &it : ships)
-		if(!it->IsParked() && it->GetSystem() == system)
-			return it.get();
-	
-	return nullptr;
+	return const_cast<PlayerInfo *>(this)->FlagshipPtr().get();
 }
 
 
@@ -547,11 +545,21 @@ const Ship *PlayerInfo::Flagship() const
 // ship in the list.
 Ship *PlayerInfo::Flagship()
 {
-	for(const shared_ptr<Ship> &it : ships)
-		if(!it->IsParked() && it->GetSystem() == system)
-			return it.get();
+	return FlagshipPtr().get();
+}
+
+
+
+const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
+{
+	if(!flagship)
+	{
+		for(const shared_ptr<Ship> &it : ships)
+			if(!it->IsParked() && it->GetSystem() == system && !it->CanBeCarried())
+				return it;
+	}
 	
-	return nullptr;
+	return flagship;
 }
 
 
@@ -586,8 +594,6 @@ void PlayerInfo::BuyShip(const Ship *model, const string &name)
 		ships.back()->SetIsSpecial();
 		ships.back()->SetIsYours();
 		ships.back()->SetGovernment(GameData::PlayerGovernment());
-		if(ships.size() > 1)
-			ships.back()->SetParent(ships.front());
 		
 		accounts.AddCredits(-model->Cost());
 	}
@@ -644,52 +650,21 @@ void PlayerInfo::RenameShip(const Ship *selected, const string &name)
 void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 {
 	// Make sure the indices are valid.
+	if(fromIndex == toIndex)
+		return;
 	if(static_cast<unsigned>(fromIndex) >= ships.size())
 		return;
 	if(static_cast<unsigned>(toIndex) >= ships.size())
 		return;
 	
-	// Fighters and drones are not allowed to be flagships. Therefore, the
-	// flagship cannot be moved if the second ship is a fighter or drone.
-	if(!fromIndex)
-	{
-		if(ships.size() < 2)
-			return;
-		if(ships[1]->CanBeCarried())
-			return;
-	}
-	
-	// If the player tries to make the flagship a fighter, a drone, a disabled
-	// or destroyed ship, or a ship that is not present here, do not allow it.
-	if(!toIndex)
-	{
-		// Check that this ship is eligible to be a flagship.
-		if(ships[fromIndex]->CanBeCarried())
-			++toIndex;
-		else if(ships[fromIndex]->IsDisabled() || ships[fromIndex]->IsDestroyed())
-			++toIndex;
-		else if(ships[fromIndex]->GetSystem() != system)
-			++toIndex;
-	}
-	
 	// Reorder the list.
 	shared_ptr<Ship> ship = ships[fromIndex];
 	ships.erase(ships.begin() + fromIndex);
 	ships.insert(ships.begin() + toIndex, ship);
-	
-	// Make sure all the ships know who the flagship is.
-	for(const shared_ptr<Ship> &it : ships)
-		if(it != ships.front())
-			it->SetParent(ships.front());
-	
-	// The flagship has no parent.
-	ships.front()->SetParent(shared_ptr<Ship>());
-	// Make sure the new flagship is not "parked."
-	ships.front()->SetIsParked(false);
 }
 
 
-	
+
 // Get cargo information.
 CargoHold &PlayerInfo::Cargo()
 {
@@ -718,7 +693,10 @@ void PlayerInfo::AdjustBasis(const string &commodity, int64_t adjustment)
 // of the commodity that you own is assumed to have the same basis.
 int64_t PlayerInfo::GetBasis(const string &commodity, int tons) const
 {
+	// Handle cost basis even when not landed on a planet.
 	int total = cargo.Get(commodity);
+	for(const auto &ship : ships)
+		total += ship->Cargo().Get(commodity);
 	if(!total)
 		return 0;
 	
@@ -736,6 +714,11 @@ void PlayerInfo::Land(UI *ui)
 	// This can only be done while landed.
 	if(!system || !planet)
 		return;
+	
+	Audio::Play(Audio::Get("landing"));
+	
+	// Mark this planet as visited.
+	Visit(planet);
 	
 	// Remove any ships that have been destroyed or captured.
 	map<string, int> lostCargo;
@@ -758,7 +741,7 @@ void PlayerInfo::Land(UI *ui)
 	
 	// "Unload" all fighters, so they will get recharged, etc.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == system && !ship->IsDisabled())
+		if(!ship->IsDisabled())
 			ship->UnloadFighters();
 	
 	// Recharge any ships that are landed with you on the planet.
@@ -780,8 +763,11 @@ void PlayerInfo::Land(UI *ui)
 	auto mit = missions.begin();
 	while(mit != missions.end())
 	{
-		const Mission &mission = *mit;
+		Mission &mission = *mit;
 		++mit;
+		
+		// If this is a stopover for the mission, perform the stopover action.
+		mission.Do(Mission::STOPOVER, *this, ui);
 		
 		if(mission.HasFailed(*this))
 			RemoveMission(Mission::FAIL, mission, ui);
@@ -795,7 +781,6 @@ void PlayerInfo::Land(UI *ui)
 	// Create whatever missions this planet has to offer.
 	if(!freshlyLoaded)
 		CreateMissions();
-	freshlyLoaded = false;
 	
 	// Search for any missions that have failed but for which we are still
 	// holding on to some cargo.
@@ -815,7 +800,9 @@ void PlayerInfo::Land(UI *ui)
 	
 	// Check if the player is doing anything illegal.
 	const Government *gov = GetSystem()->GetGovernment();
-	string message = gov->Fine(*this, 0, nullptr, GetPlanet()->Security());
+	string message;
+	if(!freshlyLoaded && !GameData::GetPolitics().HasDominated(GetPlanet()))
+		message = gov->Fine(*this, 0, nullptr, GetPlanet()->Security());
 	if(!message.empty())
 	{
 		if(message == "atrocity")
@@ -838,18 +825,23 @@ void PlayerInfo::Land(UI *ui)
 		else
 			ui->Push(new Dialog(message));
 	}
+	
+	freshlyLoaded = false;
+	flagship.reset();
 }
 
 
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-void PlayerInfo::TakeOff()
+void PlayerInfo::TakeOff(UI *ui)
 {
 	shouldLaunch = false;
 	// This can only be done while landed.
 	if(!system || !planet)
 		return;
+	
+	Audio::Play(Audio::Get("takeoff"));
 	
 	// Jobs are only available when you are landed.
 	availableJobs.clear();
@@ -865,48 +857,66 @@ void PlayerInfo::TakeOff()
 	// Store the total cargo counts in case we need to adjust cost bases below.
 	map<string, int> originalTotals = cargo.Commodities();
 	
-	Ship *flagship = Flagship();
+	flagship = FlagshipPtr();
+	if(!flagship)
+		return;
+	// Move the flagship to the start of your list of ships. It does not make
+	// sense that the flagship would change if you are reunited with a different
+	// ship that was higher up the list.
+	auto it = find(ships.begin(), ships.end(), flagship);
+	if(it != ships.begin() && it != ships.end())
+	{
+		ships.erase(it);
+		ships.insert(ships.begin(), flagship);
+	}
+	// Make sure your ships all know who the flagship is.
+	flagship->SetParent(shared_ptr<Ship>());
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship != flagship)
+			ship->SetParent(flagship);
+	
+	// Recharge any ships that can be recharged.
 	bool canRecharge = planet->HasSpaceport() && planet->CanUseServices();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(!ship->IsParked() && ship->GetSystem() == system && !ship->IsDisabled())
 		{
 			if(canRecharge)
 				ship->Recharge();
-			if(ship.get() != flagship)
+			if(ship != flagship)
 			{
 				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
 				cargo.TransferAll(&ship->Cargo());
 			}
+			else
+			{
+				// Your flagship takes first priority for passengers but last for cargo.
+				ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->Crew());
+				for(const auto &it : cargo.PassengerList())
+					cargo.TransferPassengers(it.first, it.second, &ship->Cargo());
+			}
 		}
-	if(flagship)
+	// Load up your flagship last, so that it will have space free for any
+	// plunder that you happen to acquire.
+	cargo.TransferAll(&flagship->Cargo());
+
+	if(cargo.Passengers())
 	{
-		// Load up your flagship last, so that it will have space free for any
-		// plunder that you happen to acquire.
-		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->RequiredCrew());
-		cargo.TransferAll(&flagship->Cargo());
-	}
-	if(cargo.Passengers() && ships.size())
-	{
-		Ship &flagship = *ships.front();
-		int extra = min(cargo.Passengers(), flagship.Crew() - flagship.RequiredCrew());
+		int extra = min(cargo.Passengers(), flagship->Crew() - flagship->RequiredCrew());
 		if(extra)
 		{
-			flagship.AddCrew(-extra);
+			flagship->AddCrew(-extra);
 			Messages::Add("You fired " + to_string(extra) + " crew members to free up bunks for passengers.");
-			flagship.Cargo().SetBunks(flagship.Attributes().Get("bunks") - flagship.Crew());
-			cargo.TransferAll(&flagship.Cargo());
+			flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
+			cargo.TransferAll(&flagship->Cargo());
 		}
 	}
-	if(ships.size())
+
+	int extra = flagship->Crew() + flagship->Cargo().Passengers() - flagship->Attributes().Get("bunks");
+	if(extra > 0)
 	{
-		Ship &flagship = *ships.front();
-		int extra = flagship.Crew() + flagship.Cargo().Passengers() - flagship.Attributes().Get("bunks");
-		if(extra > 0)
-		{
-			flagship.AddCrew(-extra);
-			Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.");
-			flagship.Cargo().SetBunks(flagship.Attributes().Get("bunks") - flagship.Crew());
-		}
+		flagship->AddCrew(-extra);
+		Messages::Add("You fired " + to_string(extra) + " crew members because you have no bunks for them.");
+		flagship->Cargo().SetBunks(flagship->Attributes().Get("bunks") - flagship->Crew());
 	}
 	
 	// For each fighter and drone you own, try to find a ship that has a bay to
@@ -915,7 +925,7 @@ void PlayerInfo::TakeOff()
 	vector<shared_ptr<Ship>> drones;
 	for(shared_ptr<Ship> &ship : ships)
 	{
-		if(ship->IsParked() || ship->GetSystem() != system || ship->IsDisabled())
+		if(ship->IsParked() || ship->IsDisabled())
 			continue;
 		
 		bool fit = false;
@@ -923,7 +933,8 @@ void PlayerInfo::TakeOff()
 		if(category == "Fighter")
 		{
 			for(shared_ptr<Ship> &parent : ships)
-				if(parent->GetSystem() == system && !parent->IsParked() && parent->FighterBaysFree())
+				if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
+						&& !parent->IsDisabled() && parent->FighterBaysFree())
 				{
 					parent->AddFighter(ship);
 					fit = true;
@@ -935,7 +946,8 @@ void PlayerInfo::TakeOff()
 		else if(category == "Drone")
 		{
 			for(shared_ptr<Ship> &parent : ships)
-				if(parent->GetSystem() == system && !parent->IsParked() && parent->DroneBaysFree())
+				if(parent->GetSystem() == ship->GetSystem() && !parent->IsParked()
+						&& !parent->IsDisabled() && parent->DroneBaysFree())
 				{
 					parent->AddFighter(ship);
 					fit = true;
@@ -1008,7 +1020,7 @@ void PlayerInfo::TakeOff()
 			
 		}
 	for(const Mission *mission : missionsToRemove)
-		RemoveMission(Mission::FAIL, *mission, nullptr);
+		RemoveMission(Mission::FAIL, *mission, ui);
 	
 	// Any ordinary cargo left behind can be sold.
 	int64_t sold = cargo.Used();
@@ -1088,14 +1100,14 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 // Accept the given job.
-void PlayerInfo::AcceptJob(const Mission &mission)
+void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 {
 	for(auto it = availableJobs.begin(); it != availableJobs.end(); ++it)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
 			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this);
+			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
 			break;
@@ -1243,7 +1255,7 @@ void PlayerInfo::RemoveMission(Mission::Trigger trigger, const Mission &mission,
 			// mission's "on fail" fails the mission itself.
 			doneMissions.splice(doneMissions.end(), missions, it);
 			
-			mission.Do(trigger, *this, ui);
+			it->Do(trigger, *this, ui);
 			cargo.RemoveMissionCargo(&mission);
 			for(shared_ptr<Ship> &ship : ships)
 				ship->Cargo().RemoveMissionCargo(&mission);
@@ -1265,7 +1277,7 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 		mission.Do(event, *this, ui);
 	
 	// If the player's flagship was destroyed, the player is dead.
-	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target() == ships.front())
+	if((event.Type() & ShipEvent::DESTROY) && !ships.empty() && event.Target().get() == Flagship())
 		Die();
 }
 
@@ -1308,7 +1320,15 @@ bool PlayerInfo::HasSeen(const System *system) const
 // Check if the player has visited the given system.
 bool PlayerInfo::HasVisited(const System *system) const
 {
-	return (visited.find(system) != visited.end());
+	return (visitedSystems.find(system) != visitedSystems.end());
+}
+
+
+
+// Check if the player has visited the given system.
+bool PlayerInfo::HasVisited(const Planet *planet) const
+{
+	return (visitedPlanets.find(planet) != visitedPlanets.end());
 }
 
 
@@ -1336,7 +1356,7 @@ bool PlayerInfo::KnowsName(const System *system) const
 // Mark the given system as visited, and mark all its neighbors as seen.
 void PlayerInfo::Visit(const System *system)
 {
-	visited.insert(system);
+	visitedSystems.insert(system);
 	seen.insert(system);
 	for(const System *neighbor : system->Neighbors())
 		seen.insert(neighbor);
@@ -1344,12 +1364,30 @@ void PlayerInfo::Visit(const System *system)
 
 
 
+// Mark the given system as visited, and mark all its neighbors as seen.
+void PlayerInfo::Visit(const Planet *planet)
+{
+	if(!planet->TrueName().empty())
+		visitedPlanets.insert(planet);
+}
+
+
+
 // Mark a system as unvisited, even if visited previously.
 void PlayerInfo::Unvisit(const System *system)
 {
-	auto it = visited.find(system);
-	if(it != visited.end())
-		visited.erase(it);
+	auto it = visitedSystems.find(system);
+	if(it != visitedSystems.end())
+	{
+		visitedSystems.erase(it);
+		for(const StellarObject &object : system->Objects())
+			if(object.GetPlanet())
+			{
+				auto it2 = visitedPlanets.find(object.GetPlanet());
+				if(it2 != visitedPlanets.end())
+					visitedPlanets.erase(it2);
+			}
+	}
 }
 
 
@@ -1410,22 +1448,18 @@ const Outfit *PlayerInfo::SelectedWeapon() const
 // Cycle through all available secondary weapons.
 void PlayerInfo::SelectNext()
 {
-	if(ships.empty())
-		return;
-	
-	shared_ptr<Ship> &ship = ships.front();
-	if(ship->Outfits().empty())
+	if(!flagship || flagship->Outfits().empty())
 		return;
 	
 	// Start with the currently selected weapon, if any.
-	auto it = ship->Outfits().find(selectedWeapon);
-	if(it == ship->Outfits().end())
-		it = ship->Outfits().begin();
+	auto it = flagship->Outfits().find(selectedWeapon);
+	if(it == flagship->Outfits().end())
+		it = flagship->Outfits().begin();
 	else
 		++it;
 	
 	// Find the next secondary weapon.
-	for( ; it != ship->Outfits().end(); ++it)
+	for( ; it != flagship->Outfits().end(); ++it)
 		if(it->first->Icon())
 		{
 			selectedWeapon = it->first;
@@ -1548,6 +1582,9 @@ void PlayerInfo::Autosave() const
 
 void PlayerInfo::Save(const string &path) const
 {
+	if(!planet || !system)
+		return;
+	
 	DataWriter out(path);
 	
 	out.Write("pilot", firstName, lastName);
@@ -1637,6 +1674,10 @@ void PlayerInfo::Save(const string &path) const
 			out.Write("destroyed", it.first);
 	
 	// Save a list of systems the player has visited.
-	for(const System *system : visited)
+	for(const System *system : visitedSystems)
 		out.Write("visited", system->Name());
+	
+	// Save a list of planets the player has visited.
+	for(const Planet *planet : visitedPlanets)
+		out.Write("visited planet", planet->TrueName());
 }

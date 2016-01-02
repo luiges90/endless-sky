@@ -18,7 +18,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "ClickZone.h"
 
 #include <map>
-#include <set>
 #include <string>
 #include <vector>
 
@@ -51,13 +50,15 @@ protected:
 	
 private:
 	void Init();
+	void DrawKey() const;
 	void DrawPanel() const;
 	void DrawItems() const;
 	
 	
 private:
-	std::map<std::string, std::set<const Outfit *>> catalog;
+	std::map<std::string, std::vector<const Outfit *>> catalog;
 	const Outfit *selected = nullptr;
+	const Outfit *compare = nullptr;
 	
 	mutable std::vector<ClickZone<const Outfit *>> zones;
 	

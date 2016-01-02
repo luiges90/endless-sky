@@ -15,10 +15,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "ShopPanel.h"
 
+#include "Sale.h"
+
 #include <string>
 
 class PlayerInfo;
 class Point;
+class Ship;
 
 
 
@@ -41,7 +44,7 @@ protected:
 	virtual int DrawDetails(const Point &center) const override;
 	virtual bool CanBuy() const override;
 	virtual void Buy() override;
-	virtual void FailBuy() override;
+	virtual void FailBuy() const override;
 	virtual bool CanSell() const override;
 	virtual void Sell() override;
 	virtual bool FlightCheck() override;
@@ -56,6 +59,8 @@ private:
 	
 private:
 	int modifier;
+	
+	Sale<Ship> shipyard;
 };
 
 

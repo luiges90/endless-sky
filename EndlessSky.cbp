@@ -41,6 +41,8 @@
 					<Add directory="C:/dev32/include" />
 				</Compiler>
 				<Linker>
+					<Add option="-Wl,--subsystem,windows" />
+					<Add option="-lwinmm" />
 					<Add library="C:\Program Files (x86)\mingw-w64\i686-5.2.0-posix-dwarf-rt_v4-rev0\mingw32\i686-w64-mingw32\lib\libmingw32.a" />
 					<Add library="C:\dev32\lib\libsdl2main.a" />
 					<Add library="C:\dev32\lib\libsdl2.dll.a" />
@@ -61,6 +63,7 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,--subsystem,windows" />
+			<Add option="-lwinmm" />
 			<Add library="C:\Program Files\mingw64\x86_64-w64-mingw32\lib\libmingw32.a" />
 			<Add library="C:\dev64\lib\libsdl2main.a" />
 			<Add library="C:\dev64\lib\libsdl2.dll.a" />
@@ -72,10 +75,10 @@
 			<Add library="C:\Program Files\mingw64\x86_64-w64-mingw32\lib\libopengl32.a" />
 			<Add directory="C:/dev64/lib" />
 		</Linker>
-		<Unit filename="source/Account.cpp" />
-		<Unit filename="source/Account.h" />
 		<Unit filename="source/AI.cpp" />
 		<Unit filename="source/AI.h" />
+		<Unit filename="source/Account.cpp" />
+		<Unit filename="source/Account.h" />
 		<Unit filename="source/Angle.cpp" />
 		<Unit filename="source/Angle.h" />
 		<Unit filename="source/Animation.cpp" />
@@ -129,6 +132,8 @@
 		<Unit filename="source/Engine.h" />
 		<Unit filename="source/EscortDisplay.cpp" />
 		<Unit filename="source/EscortDisplay.h" />
+		<Unit filename="source/File.cpp" />
+		<Unit filename="source/File.h" />
 		<Unit filename="source/Files.cpp" />
 		<Unit filename="source/Files.h" />
 		<Unit filename="source/FillShader.cpp" />

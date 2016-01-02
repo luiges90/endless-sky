@@ -23,6 +23,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 using namespace std;
 
 namespace {
+	static bool showUnderlines = false;
+	
 	static const char *vertexCode =
 		// "scale" maps pixel coordinates to GL coordinates (-1 to 1).
 		"uniform vec2 scale;\n"
@@ -30,6 +32,8 @@ namespace {
 		"uniform vec2 position;\n"
 		// The glyph to draw. (ASCII value - 32).
 		"uniform int glyph;\n"
+		// Aspect ratio of rendered glyph (unity by default).
+		"uniform float aspect = 1.f;\n"
 		
 		// Inputs from the VBO.
 		"in vec2 vert;\n"
@@ -41,7 +45,7 @@ namespace {
 		// Pick the proper glyph out of the texture.
 		"void main() {\n"
 		"  texCoord = vec2((glyph + corner.x) / 96.f, corner.y);\n"
-		"  gl_Position = vec4((vert + position) * scale, 0, 1);\n"
+		"  gl_Position = vec4((aspect * vert.x + position.x) * scale.x, (vert.y + position.y) * scale.y, 0, 1);\n"
 		"}\n";
 	
 	static const char *fragmentCode =
@@ -103,7 +107,7 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vao);
 	
-	glUniform4fv(shader.Uniform("color"), 1, color.Get());
+	glUniform4fv(colorI, 1, color.Get());
 	
 	// Update the scale, only if the screen size has changed.
 	if(Screen::Width() != screenWidth || Screen::Height() != screenHeight)
@@ -111,16 +115,24 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 		screenWidth = Screen::Width();
 		screenHeight = Screen::Height();
 		GLfloat scale[2] = {2.f / screenWidth, -2.f / screenHeight};
-		glUniform2fv(shader.Uniform("scale"), 1, scale);
+		glUniform2fv(scaleI, 1, scale);
 	}
 	
 	GLfloat textPos[2] = {
 		static_cast<float>(round(point.X() - 1.)),
 		static_cast<float>(round(point.Y()))};
 	int previous = 0;
+	bool underlineChar = false;
+	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
 	
 	for(char c : str)
 	{
+		if(c == '_')
+		{
+			underlineChar = showUnderlines;
+			continue;
+		}
+		
 		int glyph = max(0, min(GLYPHS - 1, c - 32));
 		if(!glyph)
 		{
@@ -128,12 +140,25 @@ void Font::Draw(const string &str, const Point &point, const Color &color) const
 			continue;
 		}
 		
-		glUniform1i(shader.Uniform("glyph"), glyph);
+		glUniform1i(glyphI, glyph);
+		glUniform1f(aspectI, 1.f);
 		
 		textPos[0] += advance[previous * GLYPHS + glyph] + KERN;
-		glUniform2fv(shader.Uniform("position"), 1, textPos);
+		glUniform2fv(positionI, 1, textPos);
 		
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		
+		if(underlineChar)
+		{
+			glUniform1i(glyphI, underscoreGlyph);
+			glUniform1f(aspectI, static_cast<float>(advance[glyph * GLYPHS] + KERN)
+				/ (advance[underscoreGlyph * GLYPHS] + KERN));
+			
+			glUniform2fv(positionI, 1, textPos);
+			
+			glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+			underlineChar = false;
+		}
 		
 		previous = glyph;
 	}
@@ -155,6 +180,9 @@ int Font::Width(const char *str, char after) const
 	
 	for( ; *str; ++str)
 	{
+		if(*str == '_')
+			continue;
+		
 		int glyph = max(0, min(GLYPHS - 1, *str - 32));
 		if(!glyph)
 			width += space;
@@ -181,6 +209,13 @@ int Font::Height() const
 int Font::Space() const
 {
 	return space;
+}
+
+
+
+void Font::ShowUnderlines(bool show)
+{
+	showUnderlines = show;
 }
 
 
@@ -301,4 +336,10 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	
 	// The texture always comes from texture unit 0.
 	glUniform1ui(shader.Uniform("tex"), 0);
+
+	colorI = shader.Uniform("color");
+	scaleI = shader.Uniform("scale");
+	glyphI = shader.Uniform("glyph");
+	aspectI = shader.Uniform("aspect");
+	positionI = shader.Uniform("position");
 }

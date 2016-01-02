@@ -506,7 +506,7 @@ mission "FW Southern Battle 3"
 
 mission "FW Southern Prisoners - Release"
 	name "Return Navy Prisoners"
-	description "As a goodwill gesture, eturn the Navy prisoners to <destination>, rather than imprisoning them on Clink. Your safe passage ends on <day>."
+	description "As a goodwill gesture, return the Navy prisoners to <destination>, rather than imprisoning them on Clink. Your safe passage ends on <day>."
 	source Dancer
 	clearance
 	destination "New Iceland"
@@ -756,7 +756,7 @@ mission "FW Northern 2"
 				`	"Did they agree to join us?"`
 			`	"Yes, yes, of course," he says. "But taking on six more worlds all of a sudden - I just hope it's not more than we can handle. When the Navy recovers from the battle at Rastaban and strikes back, now we have much less idea where that strike will fall."`
 			`	"So, what do we do next?" you ask.`
-			`	"We need to move more of our fleet up here to the front," he says, "but I'd be willing to bet that the Navy has installed surveillance equipment on Hope, and maybe a few other planets in this sector too. Which I should have though of before, because in order to be sure we've tracked every last one down, we need Freya's expertise in signals and sensors. So, I'm sending you to meet up with her on Dancer."`
+			`	"We need to move more of our fleet up here to the front," he says, "but I'd be willing to bet that the Navy has installed surveillance equipment on Hope, and maybe a few other planets in this sector too. Which I should have thought of before, because in order to be sure we've tracked every last one down, we need Freya's expertise in signals and sensors. So, I'm sending you to meet up with her on Dancer."`
 			choice
 				`	"No problem. Don't worry, we'll be able to handle this just fine."`
 					accept
@@ -831,7 +831,7 @@ mission "FW Northern 2C"
 			`	"A little worried," she says. "We should be armed, just in case. But I'm not picking up any human heat signatures from the building, and it wouldn't be like the Navy to leave some of their own behind for us to capture."`
 				goto destroy
 			label guns
-			`	"Now, now," she says, "we just convinced this world to join us, let's not go blowing up their whole factory district. I don't see any human heat signatures, but you can bring your weapons anyways just in case."`
+			`	"Now, now," she says, "we just convinced this world to join us, let's not go blowing up their whole factory district. I don't see any human heat signatures, but you can bring your weapons anyway just in case."`
 			label destroy
 			`	Warily, you approach the sensor installation, kicking down the door to an old abandoned warehouse. Freya is right - it's not guarded. She shuts down the transmitter, then asks for your help bringing some of the sensors and other equipment back to your ship. "I always love having a chance to look at Navy technology," she says. "Now, let's head to <planet>."`
 				accept
@@ -919,7 +919,7 @@ mission "FW Northern 3B"
 	
 	on offer
 		conversation
-			`Freya turns out to be a whisky drinker, like Tomek. By the time she has finished her first drink, she is chattering quite passionately about starship design: load balancing, stress lines, shield matrices, shipboard computers. Rather than dulling her intelligence, alcohol just seems to reduce her ability to explain things in ways a non-specialist can understand. You try to steer the conversation towards something less technical...`
+			`Freya turns out to be a whiskey drinker, like Tomek. By the time she has finished her first drink, she is chattering quite passionately about starship design: load balancing, stress lines, shield matrices, shipboard computers. Rather than dulling her intelligence, alcohol just seems to reduce her ability to explain things in ways a non-specialist can understand. You try to steer the conversation towards something less technical...`
 			choice
 				`	"So, why did you join the Council, initially?"`
 					goto council
@@ -1243,13 +1243,13 @@ mission "FW Alphas 1.1A"
 				`	"Couldn't we let the children be born, if that's what the women want, then imprison them or something if they do turn out to be Alphas?"`
 					goto live
 			label street
-			`	"Yes," he says. "Silly, isn't it? Anyways, this is my job to deal with; you need to go find Danforth."`
+			`	"Yes," he says. "Silly, isn't it? Anyway, this is my job to deal with; you need to go find Danforth."`
 				goto end
 			label kill
-			`	"Well," he says, "I envy you for living in a universe where decision like this are easy. But to me it's still a painful choice to make. Anyways, that's my problem to deal with, not yours; you need to go find Danforth."`
+			`	"Well," he says, "I envy you for living in a universe where decision like this are easy. But to me it's still a painful choice to make. Anyway, that's my problem to deal with, not yours; you need to go find Danforth."`
 				goto end
 			label live
-			`	"The Alphas were originally bred to be super-soldiers," he says, "a weapon in the hands of a despotic government. As much as I hate to admit it, there are certain branches of the Republic who would love to get their hands on a small army of impressionable Alpha children. Far better for them to die than for that to happen. Anyways, that's my job to deal with; you need to go find Danforth."`
+			`	"The Alphas were originally bred to be super-soldiers," he says, "a weapon in the hands of a despotic government. As much as I hate to admit it, there are certain branches of the Republic who would love to get their hands on a small army of impressionable Alpha children. Far better for them to die than for that to happen. Anyway, that's my job to deal with; you need to go find Danforth."`
 				goto end
 			label end
 			`	He leaves, and you return to Danforth's ship. Danforth says, "Hello there, temporary ally. It was an honor to fight alongside you, while it lasted."`
@@ -1432,7 +1432,6 @@ mission "FW Bloodsea 1.1B"
 		system Antares
 		fleet
 			names pirate
-			"hostile hail" "hostile pirate"
 			variant
 				"Raven (Afterburner)" 2
 				Hawk 2
@@ -1500,7 +1499,6 @@ mission "FW Bloodsea 1.2A"
 		system "Antares"
 		fleet
 			names pirate
-			"hostile hail" "hostile pirate"
 			variant
 				"Firebird (Plasma)"
 				"Raven (Afterburner)" 2
@@ -1597,7 +1595,7 @@ mission "FW Albatross 2"
 	on offer
 		conversation
 			`When you meet up with JJ, he looks exhausted. "Our scouts are reporting that the Navy is building a massive base on New Iceland," he says, "just a few jumps away from here. So every day I look up at the sky and wonder if today is the day when they will invade."`
-			`	You talk for a while and agree that despite the threat from the Navy, dealing with the pirates is important. JJ explains that Albatross started out as a sort of farming commune: independent, but not associated with any illegal activity. But they were dominated by pirates, and since then, one pirate overlord after another has held sway over the planet. So in principal at least, the locals ought to welcome the idea of Free Worlds protection.`
+			`	You talk for a while and agree that despite the threat from the Navy, dealing with the pirates is important. JJ explains that Albatross started out as a sort of farming commune: independent, but not associated with any illegal activity. But they were dominated by pirates, and since then, one pirate overlord after another has held sway over the planet. So in principle at least, the locals ought to welcome the idea of Free Worlds protection.`
 			`	While you are traveling with JJ, Freya agrees to stay here and work on a better surveillance network, to give Dancer advance warning if the Navy decides to invade.`
 				accept
 	
@@ -2013,17 +2011,17 @@ mission "FW Liberate Delta Sagittarii"
 				has "FW Wolf Pack 2: offered"
 			choice
 				`	"No, I haven't."`
-			`	"Too bad," says JJ, "they've managed to get their hands on some technology I'd love to have access to. But anyways, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
+			`	"Too bad," says JJ, "they've managed to get their hands on some technology I'd love to have access to. But anyway, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
 				goto plan
 			label know
 			choice
 				`	"Yes, I helped them get access to some better ramscoop technology from the Deep."`
 					goto yes
 				`	"No, I haven't had any dealings with them."`
-			`	"That's odd," says JJ, "I thought they said you helped them to get their hands on the catalytic ramscoop. But anyways,  they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
+			`	"That's odd," says JJ, "I thought they said you helped them to get their hands on the catalytic ramscoop. But anyway,  they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
 				goto plan
 			label yes
-			`	"Ah yes," says JJ, "an excellent piece of corporate espionage. A little shady and underhanded, of course, which is why we let the Wolf Pack handle things like that rather than doing it through official channels. But anyways, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
+			`	"Ah yes," says JJ, "an excellent piece of corporate espionage. A little shady and underhanded, of course, which is why we let the Wolf Pack handle things like that rather than doing it through official channels. But anyway, they've agreed to make an initial strike and fade attack on the Navy fleet to soften them up, before our own fleet gets there."`
 			
 			label plan
 			`	"That'll need to be one hell of a strike for it to make any difference," says Freya.`

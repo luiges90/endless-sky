@@ -45,6 +45,8 @@ public:
 	
 	int Space() const;
 	
+	static void ShowUnderlines(bool show);
+	
 	
 private:
 	void LoadTexture(ImageBuffer *image);
@@ -57,6 +59,12 @@ private:
 	GLuint texture;
 	GLuint vao;
 	GLuint vbo;
+	
+	GLint colorI;
+	GLint scaleI;
+	GLint glyphI;
+	GLint aspectI;
+	GLint positionI;
 	
 	int height;
 	int space;

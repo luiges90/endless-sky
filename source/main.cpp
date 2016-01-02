@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Dialog.h"
+#include "Font.h"
 #include "FrameTimer.h"
 #include "GameData.h"
 #include "MenuPanel.h"
@@ -37,6 +38,10 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include <sstream>
 #include <stdexcept>
 #include <string>
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 using namespace std;
 
@@ -79,6 +84,12 @@ int main(int argc, char *argv[])
 		GameData::BeginLoad(argv);
 		Audio::Init(GameData::Sources());
 		
+		// On Windows, make sure that the sleep timer has at least 1 ms resolution
+		// to avoid irregular frame rates.
+#ifdef _WIN32
+		timeBeginPeriod(1);
+#endif
+		
 		player.LoadRecent();
 		player.ApplyChanges();
 		
@@ -119,6 +130,9 @@ int main(int argc, char *argv[])
 		}
 		else
 			Screen::SetRaw(maxWidth - 100, maxHeight - 100);
+		// Make sure the zoom factor is not set too high for the full UI to fit.
+		if(Screen::Height() < 700)
+			Screen::SetZoom(100);
 		
 		// Create the window.
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -260,20 +274,6 @@ int main(int argc, char *argv[])
 						glViewport(0, 0, width, height);
 					}
 				}
-				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_MINIMIZED)
-				{
-					Audio::Mute();
-					isPaused = true;
-				}
-				else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESTORED)
-				{
-					Audio::Unmute();
-					isPaused = false;
-				}
-				else if(activeUI.Handle(event))
-				{
-					// No need to do anything more!
-				}
 				else if(event.type == SDL_KEYDOWN
 						&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
 						|| (event.key.keysym.sym == SDLK_RETURN && event.key.keysym.mod & KMOD_ALT)))
@@ -297,7 +297,12 @@ int main(int argc, char *argv[])
 					SDL_GL_GetDrawableSize(window, &width, &height);
 					glViewport(0, 0, width, height);
 				}
+				else if(activeUI.Handle(event))
+				{
+					// No need to do anything more!
+				}
 			}
+			Font::ShowUnderlines(SDL_GetModState() & KMOD_ALT);
 			
 			// Tell all the panels to step forward, then draw them.
 			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
@@ -357,7 +362,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky 0.8.7" << endl;
+	cerr << "Endless Sky 0.8.9" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

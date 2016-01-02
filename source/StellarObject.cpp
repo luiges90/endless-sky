@@ -24,7 +24,7 @@ using namespace std;
 StellarObject::StellarObject()
 	: planet(nullptr),
 	distance(0.), speed(0.), offset(0.), parent(-1),
-	message(nullptr), isStar(false)
+	message(nullptr), isStar(false), isStation(false), isMoon(false)
 {
 }
 
@@ -79,8 +79,8 @@ const Planet *StellarObject::GetPlanet() const
 // Only planets that you can land on have names.
 const string &StellarObject::Name() const
 {
-	static const string EMPTY;
-	return planet ? planet->Name() : EMPTY;
+	static const string UNKNOWN = "???";
+	return (planet && !planet->Name().empty()) ? planet->Name() : UNKNOWN;
 }
 
 
@@ -104,6 +104,22 @@ const string &StellarObject::LandingMessage() const
 bool StellarObject::IsStar() const
 {
 	return isStar;
+}
+
+
+
+// Check if this is a station.
+bool StellarObject::IsStation() const
+{
+	return isStation;
+}
+
+
+
+// Check if this is a moon.
+bool StellarObject::IsMoon() const
+{
+	return isMoon;
 }
 
 

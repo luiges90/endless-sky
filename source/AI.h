@@ -15,10 +15,12 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Command.h"
 
+#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>
 
+class Government;
 class Point;
 class Ship;
 class ShipEvent;
@@ -36,7 +38,7 @@ class AI {
 public:
 	AI();
 	
-	void UpdateKeys(PlayerInfo &player, bool isActive);
+	void UpdateKeys(PlayerInfo &player, Command &clickCommands, bool isActive);
 	void UpdateEvents(const std::list<ShipEvent> &events);
 	void Clean();
 	void Step(const std::list<std::shared_ptr<Ship>> &ships, const PlayerInfo &player);
@@ -62,7 +64,7 @@ private:
 	static void DoCloak(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
 	static void DoScatter(Ship &ship, Command &command, const std::list<std::shared_ptr<Ship>> &ships);
 	
-	static Point StoppingPoint(const Ship &ship);
+	static Point StoppingPoint(const Ship &ship, bool &shouldReverse);
 	// Get a vector giving the direction this ship should aim in in order to do
 	// maximum damaged to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
@@ -75,6 +77,7 @@ private:
 	void MovePlayer(Ship &ship, const PlayerInfo &player, const std::list<std::shared_ptr<Ship>> &ships);
 	
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
+	bool Has(const Government *government, const std::weak_ptr<const Ship> &other, int type) const;
 	
 	
 private:
@@ -89,13 +92,21 @@ private:
 	
 	bool holdPosition;
 	bool moveToMe;
+	bool escortsAreFrugal = true;
+	bool escortsUseAmmo = true;
 	std::weak_ptr<Ship> sharedTarget;
 	// Pressing "land" rapidly toggles targets; pressing it once re-engages landing.
 	int landKeyInterval;
 	
 	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
 	std::map<std::weak_ptr<const Ship>, std::map<std::weak_ptr<const Ship>, int, Comp>, Comp> actions;
+	std::map<const Government *, std::map<std::weak_ptr<const Ship>, int, Comp>> governmentActions;
 	std::map<std::weak_ptr<const Ship>, int, Comp> playerActions;
+	
+	std::map<const Ship *, int64_t> shipStrength;
+	
+	std::map<const Government *, int64_t> enemyStrength;
+	std::map<const Government *, int64_t> allyStrength;
 };
 
 

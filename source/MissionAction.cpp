@@ -66,10 +66,15 @@ void MissionAction::Load(const DataNode &node, const string &missionName)
 		}
 		else if(child.Token(0) == "require" && child.Size() >= 2)
 			gifts[GameData::Outfits().Get(child.Token(1))] = 0;
-		else if(child.Token(0) == "payment" && child.Size() >= 2)
-			payment += child.Value(1);
 		else if(child.Token(0) == "payment")
-			giveDefaultPayment = true;
+		{
+			if(child.Size() == 1)
+				paymentMultiplier += 150;
+			if(child.Size() >= 2)
+				payment += child.Value(1);
+			if(child.Size() >= 3)
+				paymentMultiplier += child.Value(2);
+		}
 		else if(child.Token(0) == "event" && child.Size() >= 2)
 		{
 			int days = (child.Size() >= 3 ? child.Value(2) : 0);
@@ -173,14 +178,14 @@ bool MissionAction::CanBeDone(const PlayerInfo &player) const
 void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) const
 {
 	bool isOffer = (trigger == "offer");
-	if(!conversation.IsEmpty())
+	if(!conversation.IsEmpty() && ui)
 	{
 		ConversationPanel *panel = new ConversationPanel(player, conversation, destination);
 		if(isOffer)
 			panel->SetCallback(&player, &PlayerInfo::MissionCallback);
 		ui->Push(panel);
 	}
-	else if(!dialogText.empty())
+	else if(!dialogText.empty() && ui)
 	{
 		map<string, string> subs;
 		subs["<first>"] = player.FirstName();
@@ -250,7 +255,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 			player.Cargo().Transfer(it.first, -count);
 			player.Cargo().SetSize(size);
 			didCargo = true;
-			if(count > 0)
+			if(count > 0 && ui)
 			{
 				string special = "The " + name + (count == 1 ? " was" : "s were");
 				special += " put in your cargo hold because there is not enough space to install ";
@@ -293,7 +298,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const System *destination) co
 
 
 
-MissionAction MissionAction::Instantiate(map<string, string> &subs, int defaultPayment) const
+MissionAction MissionAction::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	MissionAction result;
 	result.trigger = trigger;
@@ -301,7 +306,7 @@ MissionAction MissionAction::Instantiate(map<string, string> &subs, int defaultP
 	
 	result.events = events;
 	result.gifts = gifts;
-	result.payment = payment + (giveDefaultPayment ? defaultPayment : 0);
+	result.payment = payment + (jumps + 1) * payload * paymentMultiplier;
 	// Fill in the payment amount if this is the "complete" action (which comes
 	// before all the others in the list).
 	if(trigger == "complete" || result.payment)

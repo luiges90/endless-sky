@@ -19,8 +19,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Outfit.h"
 #include "SpriteSet.h"
 
-#include <iostream>
-
 using namespace std;
 
 
@@ -90,6 +88,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				firingFuel = child.Value(1);
 			else if(child.Token(0) == "firing heat")
 				firingHeat = child.Value(1);
+			else if(child.Token(0) == "split range")
+				splitRange = child.Value(1);
 			else if(child.Token(0) == "trigger radius")
 				triggerRadius = child.Value(1);
 			else if(child.Token(0) == "blast radius")
@@ -105,8 +105,10 @@ void Weapon::LoadWeapon(const DataNode &node)
 			else if(child.Token(0) == "hit force")
 				hitForce = child.Value(1);
 			else
-				cerr << "Unrecognized weapon attribute: \"" << child.Token(0) << "\"." << endl;
+				child.PrintTrace("Unrecognized weapon attribute: \"" + child.Token(0) + "\":");
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 

@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
+#include "Phrase.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
@@ -42,13 +43,23 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship)
 	
 	const Government *gov = ship->GetGovernment();
 	header = gov->GetName() + " ship \"" + ship->Name() + "\":";
+	hasLanguage = (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
 	
-	if(gov->IsEnemy())
+	if(gov->GetName() == "Derelict")
+		message = "There is no response to your hail.";
+	else if(!hasLanguage)
+		message = "(An alien voice says something in a language you do not recognize.)";
+	else if(gov->IsEnemy())
 	{
-		SetBribe(gov->GetBribeFraction());
-		if(bribe)
-			message = "If you want us to leave you alone, it'll cost you "
-				+ Format::Number(bribe) + " credits.";
+		if(ship->IsDisabled())
+			message = GameData::Phrases().Get("hostile disabled")->Get();
+		else
+		{
+			SetBribe(gov->GetBribeFraction());
+			if(bribe)
+				message = "If you want us to leave you alone, it'll cost you "
+					+ Format::Number(bribe) + " credits.";
+		}
 	}
 	else if(ship->IsDisabled())
 	{
@@ -100,9 +111,12 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	
 	const Government *gov = player.GetSystem()->GetGovernment();
 	if(planet)
-		header = gov->GetName() + " planet \"" + planet->Name() + "\":";
+		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->Name() + "\":";
+	hasLanguage = (gov->Language().empty() || player.GetCondition("language: " + gov->Language()));
 	
-	if(planet && player.Flagship())
+	if(!hasLanguage)
+		message = "(An alien voice says something in a language you do not recognize.)";
+	else if(planet && player.Flagship())
 	{
 		for(const Mission &mission : player.Missions())
 			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto"
@@ -137,22 +151,41 @@ void HailPanel::Draw() const
 	if(ship)
 	{
 		bool isEnemy = ship->GetGovernment()->IsEnemy();
-		if(isEnemy)
+		if(!hasLanguage)
 		{
-			interfaceInfo.SetCondition("can bribe");
+			interfaceInfo.SetCondition("cannot assist");
+			interfaceInfo.SetCondition("cannot bribe");
+		}
+		else if(isEnemy)
+		{
+			if(!ship->IsDisabled())
+				interfaceInfo.SetCondition("can bribe");
 			interfaceInfo.SetCondition("cannot assist");
 		}
 		else
-			interfaceInfo.SetCondition("can assist");
+		{
+			if(ship->GetGovernment()->GetName() == "Derelict")
+				interfaceInfo.SetCondition("cannot assist");
+			else
+				interfaceInfo.SetCondition("can assist");
+		}
 	}
 	else
 	{
-		if(!planet->CanLand())
-			interfaceInfo.SetCondition("can bribe");
-		else
+		if(!hasLanguage)
+		{
+			interfaceInfo.SetCondition("cannot dominate");
 			interfaceInfo.SetCondition("cannot bribe");
+		}
+		else
+		{
+			if(!planet->CanLand())
+				interfaceInfo.SetCondition("can bribe");
+			else
+				interfaceInfo.SetCondition("cannot bribe");
 		
-		interfaceInfo.SetCondition("can dominate");
+			interfaceInfo.SetCondition("can dominate");
+		}
 	}
 	
 	const Interface *interface = GameData::Interfaces().Get("hail panel");
@@ -193,19 +226,20 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		GetUI()->Pop(this);
 	else if(key == 'a' || key == 't' || key == 'h')
 	{
-		// TODO: allow the player to demand tribute from planets.
+		if(!hasLanguage)
+			return true;
 		if(planet)
 		{
 			message = planet->DemandTribute(player);
 			return true;
 		}
-		else if(shipIsEnemy)
+		else if(shipIsEnemy || ship->GetGovernment()->GetName() == "Derelict")
 			return false;
 		if(playerNeedsHelp)
 		{
 			if(canGiveFuel || canRepair)
 			{
-				ship->SetShipToAssist(player.Ships().front());
+				ship->SetShipToAssist(player.FlagshipPtr());
 				message = "Hang on, we'll be there in a minute.";
 			}
 			else if(ship->Fuel())
@@ -224,8 +258,10 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 	}
 	else if(key == 'b' || key == 'o')
 	{
+		if(!hasLanguage)
+			return true;
 		// Make sure it actually makes sense to bribe this ship.
-		if(ship && !shipIsEnemy)
+		if(ship && (!shipIsEnemy || ship->GetGovernment()->GetName() == "Derelict"))
 			return true;
 		
 		if(bribe > player.Accounts().Credits())

@@ -648,6 +648,26 @@ ship "Protector" "Protector (Laser)"
 
 
 
+ship "Vanguard" "Vanguard (Particle)"
+	outfits
+		"Particle Cannon" 7
+		"Fusion Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"X3700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+	gun "Particle Cannon"
+
+
+
 ship "Heavy Shuttle" "Heavy Shuttle (Armed)"
 	outfits
 		"Energy Blaster" 2
@@ -683,6 +703,63 @@ ship "Berserker" "Berserker (Afterburner)"
 		"Chipmunk Plasma Thruster"
 		"Greyhound Plasma Steering"
 		"Afterburner"
+		"Hyperdrive"
+
+
+
+ship "Headhunter" "Headhunter (Particle)"
+	outfits
+		"Particle Cannon" 2
+		"NT-200 Nucleovoltaic"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
+ship "Modified Argosy" "Modified Argosy (Heavy)"
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 2
+		"Fission Reactor"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Water Coolant System"
+		"A250 Atomic Thruster"
+		"A375 Atomic Steering"
+		"Hyperdrive"
+
+
+
+ship "Modified Argosy" "Modified Argosy (Laser)"
+	outfits
+		"Modified Blaster" 4
+		"Quad Blaster Turret" 2
+		"Fission Reactor"
+		"LP144a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+
+
+
+ship "Modified Argosy" "Modified Argosy (Missile)"
+	outfits
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 70
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret"
+		"Heavy Anti-Missile Turret"
+		"S3 Thermionic"
+		"LP072a Battery Pack"
+		"D41-HY Shield Generator"
+		"X3700 Ion Thruster"
+		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
 

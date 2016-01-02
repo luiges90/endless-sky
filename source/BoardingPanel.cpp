@@ -19,6 +19,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "InfoPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Messages.h"
@@ -49,8 +50,8 @@ namespace {
 
 
 BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
-	: player(player), you(player.Ships().front()), victim(victim),
-	attackOdds(player.Flagship(), &*victim), defenseOdds(&*victim, player.Flagship()),
+	: player(player), you(player.FlagshipPtr()), victim(victim),
+	attackOdds(&*you, &*victim), defenseOdds(&*victim, &*you),
 	initialCrew(you->Crew())
 {
 	SetInterruptible(false);
@@ -202,6 +203,23 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 		else
 			plunder[selected].Take(count);
 	}
+	else if((key == SDLK_UP || key == SDLK_DOWN || key == SDLK_PAGEUP || key == SDLK_PAGEDOWN) && !isCapturing)
+	{
+		if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+			Drag(0, 200 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP)));
+		else
+		{
+			if(key == SDLK_UP && selected)
+				--selected;
+			else if(key == SDLK_DOWN && selected < static_cast<int>(plunder.size() - 1))
+				++selected;
+			
+			// Scroll down at least far enough to view the current item.
+			int minimumScroll = max(0, static_cast<int>(20 * selected - 200));
+			int maximumScroll = static_cast<int>(20 * selected);
+			scroll = max(minimumScroll, min(maximumScroll, scroll));
+		}
+	}
 	else if(key == 'c' && CanCapture())
 	{
 		isCapturing = true;
@@ -265,7 +283,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			if(!you->Crew())
 			{
 				messages.push_back("You have been killed. Your ship is lost.");
-				player.Ships().front()->WasCaptured(victim);
+				you->WasCaptured(victim);
 				playerDied = true;
 				isCapturing = false;
 			}
@@ -273,7 +291,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			{
 				casualties = initialCrew - you->Crew();
 				messages.push_back("You have succeeded in capturing this ship.");
-				victim->WasCaptured(player.Ships().front());
+				victim->WasCaptured(you);
 				if(!victim->JumpsRemaining() && you->CanRefuel(*victim))
 					you->TransferFuel(victim->JumpFuel(), &*victim);
 				player.AddShip(victim);
@@ -296,6 +314,9 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command)
 			}
 		}
 	}
+	else if(command.Has(Command::INFO))
+		GetUI()->Push(new InfoPanel(player, true));
+	
 	// Trim the list of status messages.
 	while(messages.size() > 5)
 		messages.erase(messages.begin());

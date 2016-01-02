@@ -14,6 +14,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Color.h"
 #include "Command.h"
+#include "DotShader.h"
 #include "FillShader.h"
 #include "Font.h"
 #include "FontSet.h"
@@ -38,6 +39,9 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "System.h"
 #include "UI.h"
 
+#include <algorithm>
+#include <set>
+
 using namespace std;
 
 namespace {
@@ -47,6 +51,7 @@ namespace {
 		"Heavy Freighter",
 		"Interceptor",
 		"Light Warship",
+		"Medium Warship",
 		"Heavy Warship",
 		"Fighter",
 		"Drone"
@@ -59,7 +64,7 @@ namespace {
 
 
 MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
-	: MapPanel(player, -5)
+	: MapPanel(player, SHOW_SPECIAL)
 {
 	Init();
 }
@@ -69,7 +74,7 @@ MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
 MapShipyardPanel::MapShipyardPanel(const MapPanel &panel)
 	: MapPanel(panel)
 {
-	SetCommodity(-5);
+	SetCommodity(SHOW_SPECIAL);
 	Init();
 }
 
@@ -79,25 +84,36 @@ void MapShipyardPanel::Draw() const
 {
 	MapPanel::Draw();
 	
+	DrawKey();
 	DrawPanel();
 	DrawItems();
 	
 	Information info;
 	info.SetCondition("is shipyards");
+	if(ZoomIsMax())
+		info.SetCondition("max zoom");
+	if(ZoomIsMin())
+		info.SetCondition("min zoom");
 	const Interface *interface = GameData::Interfaces().Get("map buttons");
 	interface->Draw(info);
 	
 	if(selected)
 	{
 		ShipInfoDisplay infoDisplay(*selected);
+		ShipInfoDisplay compareDisplay;
+		if(compare)
+			compareDisplay.Update(*compare);
+		int infoHeight = max(infoDisplay.AttributesHeight(), 120);
+		int compareHeight = compare ? max(compareDisplay.AttributesHeight(), 120) : 0;
 		
 		Color back(.125, 1.);
-		Point size(infoDisplay.PanelWidth(), infoDisplay.AttributesHeight());
+		Point size(infoDisplay.PanelWidth(), infoHeight + compareHeight);
 		Point topLeft(Screen::Right() - size.X(), Screen::Top());
 		FillShader::Fill(topLeft + .5 * size, size, back);
 		
 		const Sprite *left = SpriteSet::Get("ui/left edge");
 		const Sprite *bottom = SpriteSet::Get("ui/bottom edge");
+		const Sprite *box = SpriteSet::Get("ui/thumb box");
 		Point leftPos = topLeft + Point(
 			-.5 * left->Width(),
 			size.Y() - .5 * left->Height());
@@ -109,7 +125,34 @@ void MapShipyardPanel::Draw() const
 			.5 * (left->Height() + bottom->Height()));
 		SpriteShader::Draw(bottom, bottomPos);
 		
+		Point iconOffset(-.5 * ICON_HEIGHT, .5 * ICON_HEIGHT);
+		const Sprite *sprite = selected->GetSprite().GetSprite();
+		int swizzle = GameData::PlayerGovernment()->GetSwizzle();
+		if(sprite)
+		{
+			double scale = min(.5, ICON_HEIGHT / sprite->Height());
+			SpriteShader::Draw(box, topLeft + iconOffset + Point(-15., 5.));
+			SpriteShader::Draw(sprite, topLeft + iconOffset + Point(0., 5.), scale, swizzle);
+		}
 		infoDisplay.DrawAttributes(topLeft);
+		
+		if(compare)
+		{
+			topLeft.Y() += infoHeight;
+			
+			sprite = compare->GetSprite().GetSprite();
+			if(sprite)
+			{
+				double scale = min(.5, ICON_HEIGHT / sprite->Height());
+				SpriteShader::Draw(box, topLeft + iconOffset + Point(-15., 5.));
+				SpriteShader::Draw(sprite, topLeft + iconOffset + Point(0., 5.), scale, swizzle);
+			}
+			
+			Color line(.5);
+			size.Y() = 1.;
+			FillShader::Fill(topLeft + .5 * size - Point(0., 1.), size, line);
+			compareDisplay.DrawAttributes(topLeft + Point(0., 10.));
+		}
 	}
 }
 
@@ -175,6 +218,10 @@ bool MapShipyardPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		scroll += (Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN));
 		scroll = min(0, max(-maxScroll, scroll));
 	}
+	else if(key == '+' || key == '=')
+		ZoomMap();
+	else if(key == '-')
+		UnzoomMap();
 	else
 		return false;
 	
@@ -194,10 +241,14 @@ bool MapShipyardPanel::Click(int x, int y)
 	{
 		Point point(x, y);
 		
-		selected = nullptr;
+		bool isCompare = (SDL_GetModState() & KMOD_SHIFT);
+		if(!isCompare)
+			selected = nullptr;
+		compare = nullptr;
+		
 		for(const ClickZone<const Ship *> &zone : zones)
 			if(zone.Contains(point))
-				selected = zone.Value();
+				(isCompare ? compare : selected) = zone.Value();
 		
 		return true;
 	}
@@ -267,10 +318,53 @@ double MapShipyardPanel::SystemValue(const System *system) const
 void MapShipyardPanel::Init()
 {
 	catalog.clear();
+	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())
 		if(player.HasVisited(it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
-				catalog[ship->Attributes().Category()].insert(ship);
+				if(seen.find(ship) == seen.end())
+				{
+					catalog[ship->Attributes().Category()].push_back(ship);
+					seen.insert(ship);
+				}
+	
+	for(auto &it : catalog)
+		sort(it.second.begin(), it.second.end(),
+			[](const Ship *a, const Ship *b) {return a->ModelName() < b->ModelName();});
+}
+
+
+
+void MapShipyardPanel::DrawKey() const
+{
+	const Sprite *back = SpriteSet::Get("ui/sales key");
+	SpriteShader::Draw(back, Screen::TopLeft() + Point(WIDTH + 10, 0) + .5 * Point(back->Width(), back->Height()));
+	
+	Color bright(.6, .6);
+	Color dim(.3, .3);
+	const Font &font = FontSet::Get(14);
+	
+	Point pos(Screen::Left() + 50. + WIDTH, Screen::Top() + 12.);
+	Point textOff(10., -.5 * font.Height());
+	
+	static const string LABEL[] = {
+		"Has no shipyard",
+		"Has shipyard",
+		"Sells this ship"
+	};
+	static const double VALUE[] = {
+		-.5,
+		0.,
+		1.
+	};
+	
+	for(int i = 0; i < 3; ++i)
+	{
+		bool isSelected = (selectedSystem && VALUE[i] == SystemValue(selectedSystem));
+		DotShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
+		font.Draw(LABEL[i], pos + textOff, isSelected ? bright : dim);
+		pos.Y() += 20.;
+	}
 }
 
 

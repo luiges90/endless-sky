@@ -18,6 +18,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Screen.h"
 #include "Ship.h"
 #include "ShipInfoDisplay.h"
 #include "System.h"
@@ -32,6 +33,7 @@ namespace {
 		"Heavy Freighter",
 		"Interceptor",
 		"Light Warship",
+		"Medium Warship",
 		"Heavy Warship",
 		"Fighter",
 		"Drone"
@@ -45,6 +47,9 @@ ShipyardPanel::ShipyardPanel(PlayerInfo &player)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].insert(it.first);
+	
+	if(player.GetPlanet())
+		shipyard = player.GetPlanet()->Shipyard();
 }
 
 
@@ -69,11 +74,14 @@ int ShipyardPanel::DrawPlayerShipInfo(const Point &point) const
 bool ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY) const
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	if(!planet->Shipyard().Has(ship))
+	if(!shipyard.Has(ship))
 		return false;
 	
-	DrawShip(*ship, point, ship == selectedShip);
 	zones.emplace_back(point.X(), point.Y(), SHIP_SIZE / 2, SHIP_SIZE / 2, ship, scrollY);
+	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
+		return true;
+	
+	DrawShip(*ship, point, ship == selectedShip);
 	
 	return true;
 }
@@ -147,7 +155,7 @@ void ShipyardPanel::Buy()
 
 
 
-void ShipyardPanel::FailBuy()
+void ShipyardPanel::FailBuy() const
 {
 	if(!selectedShip)
 		return;
@@ -192,27 +200,37 @@ bool ShipyardPanel::CanSell() const
 
 void ShipyardPanel::Sell()
 {
+	static const int MAX_LIST = 20;
+	
 	int count = playerShips.size();
-	string message = "Sell \"";
+	string message = "Sell ";
 	if(count == 1)
 		message += playerShip->Name();
-	else
+	else if(count <= MAX_LIST)
 	{
 		auto it = playerShips.begin();
 		message += (*it++)->Name();
 		--count;
 		
 		if(count == 1)
-			message += "\" and \"";
+			message += " and ";
 		else
 		{
 			while(count-- > 1)
-				message += "\",\n\"" + (*it++)->Name();
-			message += "\",\nand \"";
+				message += ",\n" + (*it++)->Name();
+			message += ",\nand ";
 		}
 		message += (*it)->Name();
 	}
-	message += "\"?";
+	else
+	{
+		auto it = playerShips.begin();
+		for(int i = 0; i < MAX_LIST - 1; ++i)
+			message += (*it++)->Name() + ",\n";
+		
+		message += "and " + Format::Number(count - (MAX_LIST - 1)) + " other ships";
+	}
+	message += "?";
 	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message));
 }
 

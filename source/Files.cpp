@@ -12,6 +12,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Files.h"
 
+#include "File.h"
+
 #include <SDL2/SDL.h>
 
 #if defined _WIN32
@@ -24,6 +26,8 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <cstdlib>
 #include <fstream>
+#include <iostream>
+#include <mutex>
 #include <stdexcept>
 
 using namespace std;
@@ -36,6 +40,9 @@ namespace {
 	string images;
 	string sounds;
 	string saves;
+	
+	mutex errorMutex;
+	FILE *errorLog = nullptr;
 	
 	// Convert windows-style directory separators ('\\') to standard '/'.
 #if defined _WIN32
@@ -116,8 +123,7 @@ void Files::Init(const char * const *argv)
 #elif defined __APPLE__
 	// Special case for Mac OS X: the resources are in ../Resources relative to
 	// the folder the binary is in.
-	size_t pos = resources.rfind('/', resources.length() - 2) + 1;
-	resources = resources.substr(0, pos) + "Resources/";
+	resources = resources + "../Resources/";
 #endif
 	// If the resources are not here, search in the directories containing this
 	// one. This allows, for example, a Mac app that does not actually have the
@@ -125,7 +131,7 @@ void Files::Init(const char * const *argv)
 	while(!Exists(resources + "credits.txt"))
 	{
 		size_t pos = resources.rfind('/', resources.length() - 2);
-		if(pos == string::npos)
+		if(pos == string::npos || pos == 0)
 			throw runtime_error("Unable to find the resource directories!");
 		resources.erase(pos + 1);
 	}
@@ -159,7 +165,11 @@ void Files::Init(const char * const *argv)
 	
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	SDL_GetPrefPath("endless-sky", "plugins");
+	{
+		char *str = SDL_GetPrefPath("endless-sky", "plugins");
+		if(str != nullptr)
+			SDL_free(str);
+	}
 	
 	// Check that all the directories exist.
 	if(!Exists(data) || !Exists(images) || !Exists(sounds))
@@ -448,14 +458,8 @@ FILE *Files::Open(const string &path, bool write)
 
 string Files::Read(const string &path)
 {
-	FILE *file = Open(path);
-	string result;
-	if(file)
-	{
-		result = Read(file);
-		fclose(file);
-	}
-	return result;
+	File file(path);
+	return Read(file);
 }
 
 
@@ -488,12 +492,8 @@ string Files::Read(FILE *file)
 
 void Files::Write(const string &path, const string &data)
 {
-	FILE *file = Open(path, true);
-	if(file)
-	{
-		Write(file, data);
-		fclose(file);
-	}
+	File file(path, true);
+	Write(file, data);
 }
 
 
@@ -504,4 +504,18 @@ void Files::Write(FILE *file, const string &data)
 		return;
 	
 	fwrite(&data[0], 1, data.size(), file);
+}
+
+
+
+void Files::LogError(const std::string &message)
+{
+	lock_guard<mutex> lock(errorMutex);
+	cerr << message << endl;
+	if(!errorLog)
+		errorLog = Open(config + "errors.txt", true);
+	
+	Write(errorLog, message);
+	fwrite("\n", 1, 1, errorLog);
+	fflush(errorLog);
 }

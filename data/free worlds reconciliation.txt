@@ -340,7 +340,7 @@ mission "FW Reconciliation 2B"
 			`	Ijs and Katya introduce themselves to Danforth, and Katya says, "Sir, I was a child on Hope when the colony was evacuated. Your ship carried my family to safety, and I've never forgotten how every night during our journey, you would walk through the cargo bay where we were staying and check to make sure all our needs were met. I've never had a chance before now to thank you in person."`
 			`	Danforth is surprised. "Councilor Reynolds," he says, "thank you. I followed your career in Parliament with some interest, but it is a shame that we never met in person until now. But I am glad we have this chance to work together at last."`
 			`	Raven says, "Governor Edrick mentioned a plan for tracking down the Syndicate executives who were behind the attacks in the Castor and Pollux systems."`
-			`	"Indeed," says Danforth. "West of here is a region of uninhabited star systems, a sort of back entrance into Syndicate space. Few ships travel through there, because there is nowhere to refuel, but with a ramscoop or enough fuel capacity, travel is possible. One of the first inhabited worlds on the other side is the lawless world of Stormhold. There, you can surely find a contact who knows enough about the inner workings of the Syndicate to tell you the home of at least a few of our targets... for a price." He hands Katya a large stack of credit chips.`
+			`	"Indeed," says Danforth. "Southeast of here is a region of uninhabited star systems, a sort of back entrance into Syndicate space. Few ships travel through there, because there is nowhere to refuel, but with a ramscoop or enough fuel capacity, travel is possible. One of the first inhabited worlds on the other side is the lawless world of Stormhold. There, you can surely find a contact who knows enough about the inner workings of the Syndicate to tell you the home of at least a few of our targets... for a price." He hands Katya a large stack of credit chips.`
 			`	Raven says, "I'm going to stay here with the Oathkeepers. Captain <last>, it's been a pleasure working with you. We're counting on you to fetch us this information and return here as quickly as possible."`
 				accept
 
@@ -536,7 +536,7 @@ mission "FW Reconciliation Break"
 				goto wait
 			
 			label wait
-			`	"Alondo says, "We should use this time of peace well, to prepare for another battle ahead. Those Syndicate ships on New Tibet had equipment I've never seen before, and who knows what else the Syndicate has up their sleeves - especially if they've begun producing nuclear weapons. Captain <last>, you should take this time to make sure your ship is as well armed as possible for our next strike. Ijs and Katya, what will you do with this time?"`
+			`	Alondo says, "We should use this time of peace well, to prepare for another battle ahead. Those Syndicate ships on New Tibet had equipment I've never seen before, and who knows what else the Syndicate has up their sleeves - especially if they've begun producing nuclear weapons. Captain <last>, you should take this time to make sure your ship is as well armed as possible for our next strike. Ijs and Katya, what will you do with this time?"`
 			`	Katya glances at Ijs and then says, "I would certainly welcome a small sabbatical, and a chance to spend time together and catch up on all we've missed. Professor Springborn, do you think the Conservatory would extend your leave of absence long enough for us to make a trip to <planet>?"`
 			`	Ijs laughs. "That sounds wonderful, Councilor," he says. "<first>, do you think you could bring us there on your way to wherever you go next?"`
 			`	You tell him you would be glad to, and you all get ready for yet another journey together.`
@@ -648,7 +648,7 @@ mission "FW Syndicate Capture 1"
 	
 	on offer
 		conversation
-			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally your receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
+			`You land on Earth and make a show of being very busy ensuring that the Free Worlds ambassadors are comfortable and well cared for, until finally you receive a secure message from Edrick. He tells you that the convoy from the Deep is landing on Mars right now, and an Oathkeeper cruiser is visiting the shipyard on Luna. As soon as you are ready, you can take off, and travel together into the heart of Syndicate space.`
 			`	You make an excuse to depart, and return to your ship. "Well," says Ijs, "this is it. If we're lucky, they won't see us coming, but no matter what, getting back out of Syndicate space will be a nightmare. Good luck, all."`
 				accept
 	
@@ -1164,7 +1164,7 @@ mission "FW Pug 2C: Scram Drive"
 
 
 
-mission "FW Pug 2C: Jump Drive"
+mission "FW Pug 2C:  Jump Drive"
 	landing
 	name "Investigate the Pug"
 	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."
@@ -1181,7 +1181,7 @@ mission "FW Pug 2C: Jump Drive"
 	on offer
 		outfit "Jump Drive" -1
 		conversation
-			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and quickly and asks if they can look over your ship; a few minutes later, one of them says in surprise, "You've already got a Jump Drive! How did you manage that?" Since you don't need their equipment, they urge you to head directly for Pug space and continue your mission.`
+			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and asks if they can look over your ship; a few minutes later, one of them says in surprise, "You've already got a Jump Drive! How did you manage that?" Since you don't need their equipment, they urge you to head directly for Pug space and continue your mission.`
 				accept
 	
 	on accept
@@ -1307,7 +1307,7 @@ mission "FW Pug 3"
 			`	Alondo says, "I still don't understand what makes you think you have the right to interfere in human affairs."`
 		
 			label interfere
-			`	"'Interfere'?" says the alien. "We have 'interfered' many times before, and always you have benefitted. If you do not believe us, ask those who live in the place you call the Deep. We helped them defeat the twisted half-human beings that you created in your foolish attempts to improve your race's genetic code. We have helped keep those creatures in check in the centuries since then. And we have helped in many other ways."`
+			`	"'Interfere'?" says the alien. "We have 'interfered' many times before, and always you have benefited. If you do not believe us, ask those who live in the place you call the Deep. We helped them defeat the twisted half-human beings that you created in your foolish attempts to improve your race's genetic code. We have helped keep those creatures in check in the centuries since then. And we have helped in many other ways."`
 			choice
 				`	"What do you want from us in return?"`
 				`	"What are you planning to do with these systems you have occupied?"`
@@ -1740,7 +1740,7 @@ mission "FW Pug 4B"
 			choice
 				`	"Well, I guess we should give it a try."`
 					goto load
-				`	"Sounds risky. Are their any other options we could try?"`
+				`	"Sounds risky. Are there any other options we could try?"`
 			
 			`	"No," she says, "no, there are not. Sorry."`
 			label load
@@ -2464,7 +2464,7 @@ mission "FW Syndicate Extremists 1C"
 			
 			`	"What, does peace and reconciliation sound boring to you?" he says. "Don't worry about that. With that jump drive installed in your ship, the whole galaxy is open to you. Who knows what you might discover beyond the boundaries of human space?"`
 			label end
-			`	You return to your ship, and prepare for the journey back to Earth, hopeful that at last the war with the Free Worlds will be over.`
+			`	You return to your ship, and prepare for the journey back to Earth, hopeful that at last Parliament will be willing to negotiate a permanent peace with the Free Worlds.`
 				accept
 	
 	on complete

@@ -25,6 +25,11 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 using namespace std;
 
+namespace {
+	static const string &WORMHOLE = "wormhole";
+	static const string &PLANET = "planet";
+}
+
 
 
 // Load a planet's description from a file.
@@ -68,15 +73,20 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 		}
 		else if(child.Token(0) == "spaceport" && child.Size() >= 2)
 		{
-			if(resetSpaceport)
-			{
-				resetSpaceport = false;
+			if(child.Token(1) == "clear")
 				spaceport.clear();
+			else
+			{
+				if(resetSpaceport)
+				{
+					resetSpaceport = false;
+					spaceport.clear();
+				}
+				if(!spaceport.empty() && !child.Token(1).empty() && child.Token(1)[0] > ' ')
+					spaceport += '\t';
+				spaceport += child.Token(1);
+				spaceport += '\n';
 			}
-			if(!spaceport.empty() && !child.Token(1).empty() && child.Token(1)[0] > ' ')
-				spaceport += '\t';
-			spaceport += child.Token(1);
-			spaceport += '\n';
 		}
 		else if(child.Token(0) == "shipyard" && child.Size() >= 2)
 		{
@@ -110,8 +120,12 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 					defenseCount = (grand.Size() >= 3 ? grand.Value(2) : 1);
 					defenseFleet = GameData::Fleets().Get(grand.Token(1));
 				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
@@ -119,6 +133,17 @@ void Planet::Load(const DataNode &node, const Set<Sale<Ship>> &ships, const Set<
 
 // Get the name of the planet.
 const string &Planet::Name() const
+{
+	static const string UNKNOWN = "???";
+	if(IsWormhole())
+		return UNKNOWN;
+	return name;
+}
+
+
+
+// Get the name used for this planet in the data files.
+const string &Planet::TrueName() const
 {
 	return name;
 }
@@ -148,7 +173,22 @@ const set<string> &Planet::Attributes() const
 }
 
 
+
+// Get planet's noun descriptor from attributes
+const string &Planet::Noun() const
+{
+	if(IsWormhole())
+		return WORMHOLE;
 	
+	for(const string &attribute : attributes)
+		if(attribute == "moon" || attribute == "station")
+			return attribute;
+	
+	return PLANET;
+}
+
+
+
 // Check whether there is a spaceport (which implies there is also trading,
 // jobs, banking, and hiring).
 bool Planet::HasSpaceport() const
@@ -170,7 +210,8 @@ const string &Planet::SpaceportDescription() const
 // have the "uninhabited" attribute).
 bool Planet::IsInhabited() const
 {
-	return HasSpaceport() && attributes.find("uninhabited") == attributes.end();
+	return (HasSpaceport() || requiredReputation || defenseFleet)
+		&& attributes.find("uninhabited") == attributes.end();
 }
 
 
@@ -275,6 +316,18 @@ bool Planet::IsWormhole() const
 
 
 
+const System *Planet::WormholeSource(const System *to) const
+{
+	auto it = find(systems.begin(), systems.end(), to);
+	if(it == systems.end())
+		return to;
+	
+	return (it == systems.begin() ? systems.back() : *--it);
+}
+
+
+
+
 const System *Planet::WormholeDestination(const System *from) const
 {
 	auto it = find(systems.begin(), systems.end(), from);
@@ -339,7 +392,7 @@ string Planet::DemandTribute(PlayerInfo &player) const
 	// defense fleet?
 	bool isDefeated = (defenseDeployed == defenseCount);
 	for(const shared_ptr<Ship> &ship : defenders)
-		if(!ship->IsDisabled())
+		if(!ship->IsDisabled() && !ship->IsYours())
 		{
 			isDefeated = false;
 			break;

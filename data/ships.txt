@@ -11,7 +11,7 @@
 ship "Aerie"
 	sprite "ship/aerie"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 3500000
 		"shields" 5700
 		"hull" 1900
@@ -164,7 +164,7 @@ ship "Bactrian"
 	sprite "ship/bactrian"
 	attributes
 		category "Heavy Warship"
-		"cost" 12600000
+		"cost" 17600000
 		"shields" 17500
 		"hull" 8600
 		"required crew" 70
@@ -175,7 +175,7 @@ ship "Bactrian"
 		"fuel capacity" 700
 		"cargo space" 530
 		"outfit space" 740
-		"weapon capacity" 330
+		"weapon capacity" 300
 		"engine capacity" 180
 		weapon
 			"blast radius" 260
@@ -225,7 +225,7 @@ ship "Bactrian"
 ship "Bastion"
 	sprite "ship/bastion"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 3560000
 		"shields" 6700
 		"hull" 4200
@@ -672,7 +672,7 @@ ship "Combat Drone"
 ship "Corvette"
 	sprite "ship/corvette"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 4400000
 		"shields" 6100
 		"hull" 1200
@@ -891,13 +891,13 @@ ship "Falcon"
 		"required crew" 52
 		"bunks" 75
 		"mass" 510
-		"drag" 7.1
+		"drag" 6.7
 		"heat dissipation" .7
 		"fuel capacity" 600
 		"cargo space" 90
 		"outfit space" 540
 		"weapon capacity" 240
-		"engine capacity" 140
+		"engine capacity" 150
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -939,7 +939,7 @@ ship "Falcon"
 ship "Firebird"
 	sprite "ship/firebird"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 3700000
 		"shields" 6400
 		"hull" 2800
@@ -1083,7 +1083,7 @@ ship "Frigate"
 	licenses
 		Navy
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 5200000
 		"shields" 8000
 		"hull" 2500
@@ -1427,6 +1427,52 @@ ship "Hawk"
 
 
 
+ship "Headhunter"
+	sprite "ship/headhunter"
+	attributes
+		category "Light Warship"
+		"cost" 1850000
+		"shields" 3800
+		"hull" 700
+		"required crew" 2
+		"bunks" 4
+		"mass" 120
+		"drag" 2.6
+		"heat dissipation" .8
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 250
+		"weapon capacity" 60
+		"engine capacity" 80
+		weapon
+			"blast radius" 44
+			"shield damage" 440
+			"hull damage" 220
+			"hit force" 660
+	outfits
+		"Heavy Laser" 2
+		"Heavy Anti-Missile Turret"
+		
+		"RT-I Radiothermal"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma Steering"
+		"Hyperdrive"
+	
+	engine -16 47
+	engine 16 47
+	gun -13 -27 "Heavy Laser"
+	gun 13 -27 "Heavy Laser"
+	turret 0 9 "Heavy Anti-Missile Turret"
+	explode "tiny explosion" 20
+	explode "small explosion" 25
+	explode "medium explosion" 15
+	description "The Headhunter is one of the newest ships designed by Lionheart: a versatile ship that can serve equally well for carrying cargo or for bounty hunting. As with many of Lionheart's designs, the hull is mostly composite fiber rather than metal, sacrificing armor strength for the sake of lighter weight and faster movement."
+
+
+
 ship "Heavy Shuttle"
 	sprite "ship/heavy shuttle"
 	attributes
@@ -1464,7 +1510,7 @@ ship "Heavy Shuttle"
 	gun 7 -37
 	explode "tiny explosion" 10
 	explode "small explosion" 5
-	description "The Heavy Shuttle is an updated shuttle model from Betelgeuse Shipyards, attempting to improve on their perrenial classic by offering slightly better cargo and passenger capacity, at the expense of some speed and maneuverability."
+	description "The Heavy Shuttle is an updated shuttle model from Betelgeuse Shipyards, attempting to improve on their perennial classic by offering slightly better cargo and passenger capacity, at the expense of some speed and maneuverability."
 
 
 
@@ -1518,7 +1564,7 @@ ship "Leviathan"
 		"required crew" 43
 		"bunks" 64
 		"mass" 480
-		"drag" 6.9
+		"drag" 7.6
 		"heat dissipation" .5
 		"fuel capacity" 500
 		"cargo space" 80
@@ -1564,7 +1610,7 @@ ship "Leviathan"
 ship "Manta"
 	sprite "ship/manta"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 3400000
 		"shields" 5900
 		"hull" 1500
@@ -1611,10 +1657,60 @@ ship "Manta"
 
 
 
+ship "Modified Argosy"
+	sprite "ship/modified argosy"
+	attributes
+		category "Light Warship"
+		"cost" 1960000
+		"shields" 4800
+		"hull" 1900
+		"required crew" 5
+		"bunks" 12
+		"mass" 250
+		"drag" 6.2
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 60
+		"outfit space" 340
+		"weapon capacity" 140
+		"engine capacity" 80
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Heavy Laser" 4
+		"Heavy Laser Turret" 2
+		
+		"NT-200 Nucleovoltaic"
+		"LP072a Battery Pack"
+		"D23-QP Shield Generator"
+		
+		"Greyhound Plasma Thruster"
+		"X3200 Ion Steering"
+		"Hyperdrive"
+		
+	engine -16 82
+	engine 16 82
+	gun -22 -37 "Heavy Laser"
+	gun 22 -37 "Heavy Laser"
+	gun -23 -37 "Heavy Laser"
+	gun 23 -37 "Heavy Laser"
+	turret 0 -8 "Heavy Laser Turret"
+	turret 0 12 "Heavy Laser Turret"
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "big explosion" 15
+	description "The Argosy has long been a favorite ship for pirates, who have come up with many tricks for modifying them to be more suitable as warships."
+
+
+
 ship "Mule"
 	sprite "ship/mule"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 2580000
 		"shields" 5400
 		"hull" 4400
@@ -1667,7 +1763,7 @@ ship "Mule"
 ship "Osprey"
 	sprite "ship/osprey"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 4400000
 		"shields" 7200
 		"hull" 1600
@@ -1711,7 +1807,7 @@ ship "Osprey"
 	explode "big explosion" 16
 	explode "small explosion" 40
 	explode "tiny explosion" 28
-	description "After the Blackbird gained surprising popularity as an agile light warship despite its original design as a transport, Tarazed decided to produce a new design specifically intended as a warship. The Osprey was the result. Although it is considered overpriced by most savvy pilots, it is nevertheless a perrenial favorite among those who have the extra cash to spend on it."
+	description "After the Blackbird gained surprising popularity as an agile light warship despite its original design as a transport, Tarazed decided to produce a new design specifically intended as a warship. The Osprey was the result. Although it is considered overpriced by most savvy pilots, it is nevertheless a perennial favorite among those who have the extra cash to spend on it."
 
 
 
@@ -1722,7 +1818,7 @@ ship "Protector"
 		"cost" 5500000
 		"shields" 9500
 		"hull" 6500
-		"required crew" 36
+		"required crew" 30
 		"bunks" 69
 		"mass" 500
 		"drag" 10.3
@@ -1769,12 +1865,65 @@ ship "Protector"
 
 
 
+ship "Vanguard"
+	sprite "ship/vanguard"
+	attributes
+		category "Heavy Warship"
+		"cost" 7200000
+		"shields" 9800
+		"hull" 6000
+		"required crew" 23
+		"bunks" 45
+		"mass" 500
+		"drag" 8
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 560
+		"weapon capacity" 220
+		"engine capacity" 120
+		weapon
+			"blast radius" 160
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
+	outfits
+		"Proton Gun" 7
+		"Anti-Missile Turret"
+
+		"Fusion Reactor"
+		"LP072a Battery Pack"
+		"D67-TM Shield Generator"
+		"Liquid Nitrogen Cooler"
+		
+		"X3700 Ion Thruster"
+		"X4200 Ion Steering"
+		"Hyperdrive"
+	
+	engine -15 145
+	engine 15 145
+	gun 0 -140 "Proton Gun"
+	gun -18 -140 "Proton Gun"
+	gun 18 -140 "Proton Gun"
+	gun -20 -55 "Proton Gun"
+	gun 20 -55 "Proton Gun"
+	gun -30 -55 "Proton Gun"
+	gun 30 -55 "Proton Gun"
+	turret 0 30 "Anti-Missile Turret"
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "big explosion" 8
+	description `The Vanguard is Syndicated Systems' newest warship intended for the heavy anti-pirate defense market. Vanguards offer an unusual feature set, focusing on powerful fixed guns and featuring Syndicated Systems' latest automation technologies, resulting in an atypically low crew complement for a ship its size. In its stock configuration, a Vanguard is ill suited for long-range combat or boarding operations, but few capital ships will endure for long under the withering fusillade of gunfire that it can unleash against those in front of it.`
+
+
+
 ship "Quicksilver"
 	sprite "ship/quicksilver"
 	attributes
 		category "Light Warship"
-		"cost" 1590000
-		"shields" 3200
+		"cost" 1090000
+		"shields" 3000
 		"hull" 800
 		"required crew" 3
 		"bunks" 6
@@ -2049,7 +2198,7 @@ ship "Sparrow"
 ship "Splinter"
 	sprite "ship/splinter"
 	attributes
-		category "Light Warship"
+		category "Medium Warship"
 		"cost" 3100000
 		"shields" 5200
 		"hull" 1700

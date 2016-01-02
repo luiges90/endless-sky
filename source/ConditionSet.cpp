@@ -32,7 +32,9 @@ namespace {
 			{">=", [](int a, int b) -> int { return a >= b; }},
 			{"=", [](int a, int b) { return b; }},
 			{"+=", [](int a, int b) { return a + b; }},
-			{"-=", [](int a, int b) { return a - b; }}
+			{"-=", [](int a, int b) { return a - b; }},
+			{"<?=", [](int a, int b) { return min(a, b); }},
+			{">?=", [](int a, int b) { return max(a, b); }}
 		};
 		
 		auto it = opMap.find(op);
@@ -79,9 +81,15 @@ bool ConditionSet::IsEmpty() const
 void ConditionSet::Add(const DataNode &node)
 {
 	if(node.Size() == 2)
-		Add(node.Token(0), node.Token(1));
+	{
+		if(!Add(node.Token(0), node.Token(1)))
+			node.PrintTrace("Unrecognized condition expression:");
+	}
 	else if(node.Size() == 3)
-		Add(node.Token(0), node.Token(1), node.Value(2));
+	{
+		if(!Add(node.Token(0), node.Token(1), node.Value(2)))
+			node.PrintTrace("Unrecognized condition expression:");
+	}
 	else if(node.Size() == 1 && node.Token(0) == "never")
 		entries.emplace_back("", "!=", 0);
 	else if(node.Size() == 1 && (node.Token(0) == "and" || node.Token(0) == "or"))
@@ -89,11 +97,13 @@ void ConditionSet::Add(const DataNode &node)
 		children.emplace_back();
 		children.back().Load(node);
 	}
+	else
+		node.PrintTrace("Unrecognized condition expression:");
 }
 
 
 
-void ConditionSet::Add(const string &firstToken, const string &secondToken)
+bool ConditionSet::Add(const string &firstToken, const string &secondToken)
 {
 	if(firstToken == "not")
 		entries.emplace_back(secondToken, "==", 0);
@@ -107,15 +117,22 @@ void ConditionSet::Add(const string &firstToken, const string &secondToken)
 		entries.emplace_back(firstToken, "+=", 1);
 	else if(secondToken == "--")
 		entries.emplace_back(firstToken, "-=", 1);
+	else
+		return false;
+	
+	return true;
 }
 
 
 
-void ConditionSet::Add(const string &name, const string &op, int value)
+bool ConditionSet::Add(const string &name, const string &op, int value)
 {
 	BinFun fun = Op(op);
-	if(fun && !isnan(value))
-		entries.emplace_back(name, op, value);
+	if(!fun || isnan(value))
+		return false;
+	
+	entries.emplace_back(name, op, value);
+	return true;
 }
 
 
